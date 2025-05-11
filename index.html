@@ -1,0 +1,330 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>CEMSAP - Centro Médico Especializado</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link rel="stylesheet" href="css/style.css">
+    <link rel="stylesheet" href="css/animations.css">
+</head>
+<body>
+    <!-- Header con animación de aparición -->
+    <header class="header fade-in">
+        <div class="container">
+            <div class="logo-container">
+                <div class="logo-circle pulse"></div>
+                <h1 class="logo">CEMSAP</h1>
+            </div>
+            
+            <div class="contact-info">
+                <div class="contact-item slide-in-right">
+                    <i class="fas fa-phone-alt"></i>
+                    <span>809-525-9446</span>
+                </div>
+                <div class="contact-item slide-in-right" style="animation-delay: 0.2s;">
+                    <i class="fas fa-envelope"></i>
+                    <span>cemsaprd@gmail.com</span>
+                </div>
+            </div>
+            
+            <nav class="main-nav">
+                <ul>
+                    <li><a href="#" class="active nav-link">Inicio</a></li>
+                    <li><a href="#" class="nav-link">Sobre Nosotros</a></li>
+                    <li><a href="#" class="nav-link">Agendar Citas</a></li>
+                    <li><a href="#" class="nav-link">Especialidades</a></li>
+                    <li><a href="#" class="nav-link">Médicos</a></li>
+                </ul>
+            </nav>
+            
+            <div class="mobile-menu-btn">
+                <i class="fas fa-bars"></i>
+            </div>
+        </div>
+    </header>
+
+    <!-- Hero Section con efecto parallax -->
+    <section class="hero parallax">
+        <div class="hero-content">
+            <h2 class="hero-title slide-in-bottom">Cuidando tu salud con excelencia</h2>
+            <p class="hero-text slide-in-bottom" style="animation-delay: 0.3s;">Más de 20 años de experiencia al servicio de nuestra comunidad</p>
+            <div class="hero-buttons slide-in-bottom" style="animation-delay: 0.6s;">
+                <a href="#" class="btn btn-primary pulse-on-hover">Agendar Cita</a>
+                <a href="#" class="btn btn-secondary pulse-on-hover">Nuestros Médicos</a>
+            </div>
+        </div>
+        <div class="hero-overlay"></div>
+    </section>
+
+    <!-- Sección de Especialidades -->
+    <section class="specialties">
+        <div class="container">
+            <h2 class="section-title reveal-on-scroll">Nuestras Especialidades</h2>
+            <div class="specialties-grid">
+                <!-- Cada especialidad tendrá un efecto hover 3D -->
+                <div class="specialty-card flip-on-hover" data-specialty="urologia">
+                    <div class="card-front">
+                        <i class="fas fa-kidneys specialty-icon"></i>
+                        <h3>Urología</h3>
+                    </div>
+                    <div class="card-back">
+                        <p>Especialidad médica que se ocupa del tracto urinario y el sistema reproductor masculino.</p>
+                        <a href="#" class="btn btn-small">Ver más</a>
+                    </div>
+                </div>
+                
+                <div class="specialty-card flip-on-hover" data-specialty="ginecologia">
+                    <div class="card-front">
+                        <i class="fas fa-female specialty-icon"></i>
+                        <h3>Ginecología</h3>
+                    </div>
+                    <div class="card-back">
+                        <p>Especialidad médica dedicada a la salud del sistema reproductor femenino.</p>
+                        <a href="#" class="btn btn-small">Ver más</a>
+                    </div>
+                </div>
+                
+                <div class="specialty-card flip-on-hover" data-specialty="oftalmologia">
+                    <div class="card-front">
+                        <i class="fas fa-eye specialty-icon"></i>
+                        <h3>Oftalmología</h3>
+                    </div>
+                    <div class="card-back">
+                        <p>Especialidad médica que trata las enfermedades de los ojos y la visión.</p>
+                        <a href="#" class="btn btn-small">Ver más</a>
+                    </div>
+                </div>
+                
+                <div class="specialty-card flip-on-hover" data-specialty="pediatria">
+                    <div class="card-front">
+                        <i class="fas fa-baby specialty-icon"></i>
+                        <h3>Pediatría</h3>
+                    </div>
+                    <div class="card-back">
+                        <p>Especialidad médica dedicada a la salud de bebés, niños y adolescentes.</p>
+                        <a href="#" class="btn btn-small">Ver más</a>
+                    </div>
+                </div>
+                
+                <div class="specialty-card flip-on-hover" data-specialty="otorrinolaringologia">
+                    <div class="card-front">
+                        <i class="fas fa-ear specialty-icon"></i>
+                        <h3>Otorrinolaringología</h3>
+                    </div>
+                    <div class="card-back">
+                        <p>Especialidad que trata enfermedades de oídos, nariz y garganta.</p>
+                        <a href="#" class="btn btn-small">Ver más</a>
+                    </div>
+                </div>
+                
+                <div class="specialty-card flip-on-hover" data-specialty="anestesiologia">
+                    <div class="card-front">
+                        <i class="fas fa-syringe specialty-icon"></i>
+                        <h3>Anestesiología</h3>
+                    </div>
+                    <div class="card-back">
+                        <p>Especialidad médica dedicada al alivio del dolor y el cuidado del paciente quirúrgico.</p>
+                        <a href="#" class="btn btn-small">Ver más</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Sección de Médicos -->
+    <section class="doctors">
+        <div class="container">
+            <h2 class="section-title reveal-on-scroll">Nuestros Especialistas</h2>
+            <p class="section-subtitle reveal-on-scroll">Profesionales altamente calificados para tu cuidado</p>
+            
+            <div class="doctors-slider">
+                <!-- Cada tarjeta de médico tendrá efecto de zoom y sombra al hover -->
+                <div class="doctor-card zoom-on-hover reveal-on-scroll">
+                    <div class="doctor-image">
+                        <img src="images/doctors/doctor1.jpg" alt="Dr. Juan Pérez">
+                        <div class="doctor-specialty">Urología</div>
+                    </div>
+                    <div class="doctor-info">
+                        <h3>Dr. Juan Pérez</h3>
+                        <p class="doctor-title">Jefe de Urología</p>
+                        <div class="doctor-actions">
+                            <a href="#" class="btn btn-small btn-primary">Agendar Cita</a>
+                            <a href="#" class="btn btn-small btn-secondary">Ver Perfil</a>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="doctor-card zoom-on-hover reveal-on-scroll" style="animation-delay: 0.2s;">
+                    <div class="doctor-image">
+                        <img src="images/doctors/doctor2.jpg" alt="Dra. María Rodríguez">
+                        <div class="doctor-specialty">Ginecología</div>
+                    </div>
+                    <div class="doctor-info">
+                        <h3>Dra. María Rodríguez</h3>
+                        <p class="doctor-title">Ginecóloga Obstetra</p>
+                        <div class="doctor-actions">
+                            <a href="#" class="btn btn-small btn-primary">Agendar Cita</a>
+                            <a href="#" class="btn btn-small btn-secondary">Ver Perfil</a>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="doctor-card zoom-on-hover reveal-on-scroll" style="animation-delay: 0.4s;">
+                    <div class="doctor-image">
+                        <img src="images/doctors/doctor3.jpg" alt="Dr. Carlos Sánchez">
+                        <div class="doctor-specialty">Oftalmología</div>
+                    </div>
+                    <div class="doctor-info">
+                        <h3>Dr. Carlos Sánchez</h3>
+                        <p class="doctor-title">Oftalmólogo Cirujano</p>
+                        <div class="doctor-actions">
+                            <a href="#" class="btn btn-small btn-primary">Agendar Cita</a>
+                            <a href="#" class="btn btn-small btn-secondary">Ver Perfil</a>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="doctor-card zoom-on-hover reveal-on-scroll" style="animation-delay: 0.6s;">
+                    <div class="doctor-image">
+                        <img src="images/doctors/doctor4.jpg" alt="Dra. Laura Gómez">
+                        <div class="doctor-specialty">Pediatría</div>
+                    </div>
+                    <div class="doctor-info">
+                        <h3>Dra. Laura Gómez</h3>
+                        <p class="doctor-title">Pediatra Neonatóloga</p>
+                        <div class="doctor-actions">
+                            <a href="#" class="btn btn-small btn-primary">Agendar Cita</a>
+                            <a href="#" class="btn btn-small btn-secondary">Ver Perfil</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="slider-controls">
+                <button class="slider-prev"><i class="fas fa-chevron-left"></i></button>
+                <button class="slider-next"><i class="fas fa-chevron-right"></i></button>
+            </div>
+        </div>
+    </section>
+
+    <!-- Sección de Contacto -->
+    <section class="contact">
+        <div class="container">
+            <div class="contact-content">
+                <h2 class="section-title reveal-on-scroll">Comunícate con Nosotros</h2>
+                <p class="reveal-on-scroll" style="animation-delay: 0.2s;">Estamos aquí para responder tus preguntas y brindarte la mejor atención.</p>
+                
+                <form class="contact-form reveal-on-scroll" style="animation-delay: 0.4s;">
+                    <div class="form-group">
+                        <input type="text" placeholder="Nombre Completo" required>
+                    </div>
+                    <div class="form-group">
+                        <input type="email" placeholder="Correo Electrónico" required>
+                    </div>
+                    <div class="form-group">
+                        <input type="tel" placeholder="Teléfono">
+                    </div>
+                    <div class="form-group">
+                        <textarea placeholder="Mensaje" rows="5" required></textarea>
+                    </div>
+                    <button type="submit" class="btn btn-primary btn-block pulse-on-hover">Enviar Mensaje</button>
+                </form>
+            </div>
+            
+            <div class="contact-info-box reveal-on-scroll" style="animation-delay: 0.6s;">
+                <div class="info-item">
+                    <i class="fas fa-map-marker-alt"></i>
+                    <h3>Dirección</h3>
+                    <p>Av. Principal #123, Santo Domingo, RD</p>
+                </div>
+                <div class="info-item">
+                    <i class="fas fa-phone-alt"></i>
+                    <h3>Teléfono</h3>
+                    <p>809-525-9446</p>
+                </div>
+                <div class="info-item">
+                    <i class="fas fa-envelope"></i>
+                    <h3>Correo Electrónico</h3>
+                    <p>cemsaprd@gmail.com</p>
+                </div>
+                <div class="info-item">
+                    <i class="fas fa-clock"></i>
+                    <h3>Horario de Atención</h3>
+                    <p>Lunes a Viernes: 8:00 AM - 6:00 PM<br>
+                    Sábados: 8:00 AM - 12:00 PM</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="container">
+            <div class="footer-column">
+                <div class="logo-container">
+                    <div class="logo-circle"></div>
+                    <h3 class="logo">CEMSAP</h3>
+                </div>
+                <p>Centro Médico Especializado con más de 20 años de experiencia brindando atención médica de calidad.</p>
+                <div class="social-icons">
+                    <a href="#"><i class="fab fa-facebook-f"></i></a>
+                    <a href="#"><i class="fab fa-instagram"></i></a>
+                    <a href="#"><i class="fab fa-twitter"></i></a>
+                    <a href="#"><i class="fab fa-linkedin-in"></i></a>
+                </div>
+            </div>
+            
+            <div class="footer-column">
+                <h3>Enlaces Rápidos</h3>
+                <ul>
+                    <li><a href="#">Inicio</a></li>
+                    <li><a href="#">Sobre Nosotros</a></li>
+                    <li><a href="#">Especialidades</a></li>
+                    <li><a href="#">Médicos</a></li>
+                    <li><a href="#">Agendar Cita</a></li>
+                </ul>
+            </div>
+            
+            <div class="footer-column">
+                <h3>Especialidades</h3>
+                <ul>
+                    <li><a href="#">Urología</a></li>
+                    <li><a href="#">Ginecología</a></li>
+                    <li><a href="#">Oftalmología</a></li>
+                    <li><a href="#">Pediatría</a></li>
+                    <li><a href="#">Otorrinolaringología</a></li>
+                    <li><a href="#">Anestesiología</a></li>
+                </ul>
+            </div>
+            
+            <div class="footer-column">
+                <h3>Contacto</h3>
+                <ul>
+                    <li><i class="fas fa-map-marker-alt"></i> Av. Principal #123, Santo Domingo</li>
+                    <li><i class="fas fa-phone-alt"></i> 809-525-9446</li>
+                    <li><i class="fas fa-envelope"></i> cemsaprd@gmail.com</li>
+                </ul>
+            </div>
+        </div>
+        
+        <div class="footer-bottom">
+            <div class="container">
+                <p>&copy; 2023 CEMSAP - Todos los derechos reservados</p>
+                <div class="footer-links">
+                    <a href="#">Política de Privacidad</a>
+                    <a href="#">Términos y Condiciones</a>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Botón flotante de WhatsApp -->
+    <a href="https://wa.me/18095259446" class="whatsapp-float pulse" target="_blank">
+        <i class="fab fa-whatsapp"></i>
+    </a>
+
+    <script src="js/main.js"></script>
+    <script src="js/animations.js"></script>
+</body>
+</html>
