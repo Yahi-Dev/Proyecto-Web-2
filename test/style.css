@@ -172,7 +172,8 @@
 
         .contact-info {
             display: flex;
-            gap: 20px;
+            flex-direction: column;
+            gap: 12px;
         }
 
         .contact-item {
@@ -1323,6 +1324,11 @@
             transform: translateY(-3px);
         }
 
+        /* Añade estos estilos para corregir la alineación */
+        .footer-contact {
+            min-width: 250px; /* Asegura un ancho mínimo consistente */
+        }
+
         .footer-links h3,
         .footer-specialties h3,
         .footer-contact h3 {
@@ -1382,9 +1388,10 @@
         .contact-info p {
             font-size: 14px;
             color: var(--primary-light-2);
-            margin-bottom: 15px;
+            margin-bottom: 0px;
             display: flex;
             align-items: center;
+            white-space: nowrap;
             gap: 10px;
         }
 
