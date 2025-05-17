@@ -73,11 +73,9 @@
             <span></span>
           </div>
           <ul class="nav-menu">
-            <li><a href="#" class="nav-link active">Inicio</a></li>
-            <li><a href="#" class="nav-link">Nosotros</a></li>
-            <li><a href="#" class="nav-link">Especialidades</a></li>
-            <li><a href="#" class="nav-link">Médicos</a></li>
-            <li><a href="#" class="btn btn-appointment">Agendar Cita</a></li>
+            <li><a href="/index.html" class="nav-link active">Inicio</a></li>
+            <li><a href="/contacto.html" class="nav-link">Nosotros</a></li>
+            <li><a href="#agendar-cita" class="btn btn-appointment">Agendar Cita</a></li>
           </ul>
         </nav>
       </div>
@@ -96,11 +94,11 @@
               atención médica
             </p>
             <div class="hero-buttons animate-text delay-2">
-              <a href="#" class="btn btn-primary">
+              <a href="#agendar-cita" class="btn btn-primary">
                 <span>Agendar Cita</span>
                 <i class="fas fa-calendar-check"></i>
               </a>
-              <a href="#" class="btn btn-secondary">
+              <a href="#especialidades" class="btn btn-secondary">
                 <span>Conocer Especialidades</span>
                 <i class="fas fa-arrow-right"></i>
               </a>
@@ -201,7 +199,7 @@
       </div>
     </section>
 
-    <section class="specialties">
+    <section class="specialties" id="especialidades">
       <div class="container">
         <div class="section-header" data-aos="fade-up">
           <span class="section-subtitle">Servicios Médicos</span>
@@ -264,9 +262,9 @@
           </div>
         </div>
         <div class="specialties-cta" data-aos="fade-up">
-          <a href="#" class="btn btn-secondary">
-            <span>VER MÁS ESPECIALIDADES</span>
-            <i class="fas fa-arrow-right"></i>
+          <a href="especialidades.html" class="btn btn-secondary">
+              <span>VER MÁS ESPECIALIDADES</span>
+              <i class="fas fa-arrow-right"></i>
           </a>
         </div>
       </div>
@@ -348,7 +346,7 @@
                 <li>Andrología</li>
               </ul>
               <div class="doctor-actions">
-                <a href="#" class="btn btn-primary">
+                <a href="#agendar-cita" class="btn btn-primary">
                   <span>Agendar Cita</span>
                   <i class="fas fa-calendar-check"></i>
                 </a>
@@ -375,7 +373,7 @@
                 <li>Menopausia</li>
               </ul>
               <div class="doctor-actions">
-                <a href="#" class="btn btn-primary">
+                <a href="#agendar-cita" class="btn btn-primary">
                   <span>Agendar Cita</span>
                   <i class="fas fa-calendar-check"></i>
                 </a>
@@ -402,7 +400,7 @@
                 <li>Córnea</li>
               </ul>
               <div class="doctor-actions">
-                <a href="#" class="btn btn-primary">
+                <a href="#agendar-cita" class="btn btn-primary">
                   <span>Agendar Cita</span>
                   <i class="fas fa-calendar-check"></i>
                 </a>
@@ -538,7 +536,7 @@
       </div>
     </section>
 
-    <section class="appointment">
+    <section class="appointment" id="agendar-cita">
       <div class="container">
         <div class="appointment-wrapper">
           <div class="appointment-content" data-aos="fade-right">
@@ -796,6 +794,11 @@
 </html>
 
 <style>
+
+html {
+  scroll-behavior: smooth;
+}
+
   .specialty-category {
     display: flex;
     align-items: center;
@@ -819,4 +822,99 @@
     /* O si prefieres un color específico: */
     /* color: #2a7fba; */
   }
+
+  @media (prefers-reduced-motion: no-preference) {
+  html {
+    scroll-behavior: smooth;
+  }
+}
 </style>
+
+
+<script>
+  document.querySelectorAll('.btn-appointment').forEach(button => {
+  button.addEventListener('click', function(e) {
+    e.preventDefault();
+    const targetId = this.getAttribute('href');
+    const targetSection = document.querySelector(targetId);
+    
+    if (targetSection) {
+      targetSection.scrollIntoView({
+        behavior: 'smooth',
+        block: 'start'
+      });
+    }
+  });
+});
+</script>
+
+
+<style>
+  html {
+    scroll-behavior: smooth; /* Esto proporciona un desplazamiento suave nativo */
+  }
+
+  /* Si quieres una animación más personalizada */
+  .specialties {
+    scroll-margin-top: 20px; /* Espacio arriba del elemento al hacer scroll */
+  }
+
+  /* Animación para resaltar la sección cuando llega */
+  @keyframes highlight {
+    0% {
+      background-color: rgba(255, 255, 255, 0);
+    }
+    20% {
+      background-color: rgba(255, 255, 255, 0.1);
+    }
+    100% {
+      background-color: rgba(255, 255, 255, 0);
+    }
+  }
+
+  .specialties:target {
+    animation: highlight 2s ease-out;
+  }
+</style>
+
+<script>
+  function smoothScrollToEspecialidades(event) {
+    event.preventDefault(); // Previene el comportamiento por defecto del enlace
+
+    const target = document.getElementById("especialidades");
+    if (target) {
+      // Opción 1: Usando scrollIntoView con comportamiento suave (más simple)
+      target.scrollIntoView({
+        behavior: "smooth",
+        block: "start",
+      });
+
+      // Opción 2: Animación personalizada con JavaScript (más control)
+      /*
+    const startPosition = window.pageYOffset;
+    const targetPosition = target.getBoundingClientRect().top + startPosition;
+    const distance = targetPosition - startPosition;
+    const duration = 800; // Duración en milisegundos
+    let startTime = null;
+    
+    function animation(currentTime) {
+      if (startTime === null) startTime = currentTime;
+      const timeElapsed = currentTime - startTime;
+      const run = easeInOutQuad(timeElapsed, startPosition, distance, duration);
+      window.scrollTo(0, run);
+      if (timeElapsed < duration) requestAnimationFrame(animation);
+    }
+    
+    // Función de easing para suavizar la animación
+    function easeInOutQuad(t, b, c, d) {
+      t /= d/2;
+      if (t < 1) return c/2*t*t + b;
+      t--;
+      return -c/2 * (t*(t-2) - 1) + b;
+    }
+    
+    requestAnimationFrame(animation);
+    */
+    }
+  }
+</script>

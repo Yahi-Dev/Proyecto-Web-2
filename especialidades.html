@@ -1,0 +1,765 @@
+<!DOCTYPE html>
+<html lang="es">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>CEMSAP - Centro Médico Especializado</title>
+    <link rel="stylesheet" href="/test/style.css" />
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css"
+    />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap"
+      rel="stylesheet"
+    />
+    <style>
+      :root {
+        --primary-light: #caf0f8;
+        --primary-light-2: #90e0ef;
+        --primary: #00b4d8;
+        --primary-dark: #0077b6;
+        --primary-darkest: #03045e;
+        --white: #ffffff;
+        --black: #222222;
+        --gray-light: #f5f5f5;
+        --gray: #e0e0e0;
+        --gray-dark: #888888;
+      }
+
+      * {
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+      }
+
+      body {
+        font-family: "Poppins", sans-serif;
+        color: var(--black);
+        background-color: var(--white);
+        overflow-x: hidden;
+      }
+
+      .container {
+        max-width: 1200px;
+        margin: 0 auto;
+        padding: 0 30px;
+      }
+
+      /* Header Styles */
+      .header {
+        position: fixed;
+        top: 0;
+        left: 0;
+        width: 100%;
+        background-color: var(--white);
+        box-shadow: 0 2px 15px rgba(0, 0, 0, 0.1);
+        z-index: 1000;
+        padding: 15px 0;
+      }
+
+      .header-container {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+      }
+
+      .logo {
+        display: flex;
+        align-items: center;
+        text-decoration: none;
+        gap: 12px;
+      }
+
+      .logo-icon {
+        width: 50px;
+        height: 50px;
+        background-color: var(--primary);
+        color: var(--white);
+        border-radius: 50%;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        font-size: 22px;
+      }
+
+      .logo-text h1 {
+        font-size: 26px;
+        font-weight: 700;
+        color: var(--primary-darkest);
+        margin: 0;
+        line-height: 1.1;
+      }
+
+      .logo-text span {
+        font-size: 13px;
+        color: var(--gray-dark);
+        display: block;
+      }
+
+      /* Section Header */
+      .section-header {
+        text-align: center;
+        margin-bottom: 60px;
+        padding-top: 100px;
+      }
+
+      .section-subtitle {
+        display: inline-block;
+        font-size: 16px;
+        font-weight: 600;
+        color: var(--primary);
+        margin-bottom: 15px;
+        text-transform: uppercase;
+        letter-spacing: 1px;
+        position: relative;
+      }
+
+      .section-subtitle::after {
+        content: "";
+        position: absolute;
+        bottom: -5px;
+        left: 50%;
+        transform: translateX(-50%);
+        width: 50px;
+        height: 2px;
+        background-color: var(--primary);
+      }
+
+      .section-header h2 {
+        font-size: 36px;
+        font-weight: 700;
+        color: var(--primary-darkest);
+        margin-bottom: 20px;
+      }
+
+      .section-divider {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        gap: 10px;
+      }
+
+      .section-divider span {
+        display: block;
+        width: 50px;
+        height: 2px;
+        background-color: var(--gray);
+      }
+
+      .section-divider i {
+        color: var(--primary);
+        font-size: 14px;
+      }
+
+      /* Specialties Page Styles */
+      .specialties-page {
+        padding: 100px 0;
+      }
+
+      .specialty-grid {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+        gap: 30px;
+      }
+
+      .specialty-card {
+        background-color: var(--white);
+        border-radius: 10px;
+        box-shadow: 0 5px 20px rgba(0, 0, 0, 0.05);
+        overflow: hidden;
+        transition: all 0.3s ease;
+        border-left: 5px solid var(--primary);
+      }
+
+      .specialty-card:hover {
+        transform: translateY(-10px);
+        box-shadow: 0 15px 30px rgba(0, 180, 216, 0.2);
+      }
+
+      .specialty-header {
+        display: flex;
+        align-items: center;
+        padding: 25px;
+        background-color: var(--primary-light);
+        border-bottom: 1px solid var(--gray);
+      }
+
+      .specialty-icon {
+        width: 60px;
+        height: 60px;
+        background-color: var(--primary);
+        color: var(--white);
+        border-radius: 50%;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        font-size: 24px;
+        margin-right: 20px;
+        flex-shrink: 0;
+      }
+
+      .specialty-title {
+        font-size: 22px;
+        font-weight: 700;
+        color: var(--primary-darkest);
+      }
+
+      .specialty-content {
+        padding: 25px;
+      }
+
+      .specialty-description {
+        color: var(--gray-dark);
+        margin-bottom: 20px;
+        line-height: 1.6;
+      }
+
+      .specialty-features {
+        margin-bottom: 25px;
+      }
+
+      .specialty-features h4 {
+        font-size: 16px;
+        color: var(--primary-dark);
+        margin-bottom: 15px;
+        display: flex;
+        align-items: center;
+        gap: 10px;
+      }
+
+      .specialty-features h4::after {
+        content: "";
+        flex: 1;
+        height: 1px;
+        background-color: var(--gray);
+        margin-left: 10px;
+      }
+
+      .feature-list {
+        list-style: none;
+      }
+
+      .feature-list li {
+        margin-bottom: 10px;
+        padding-left: 25px;
+        position: relative;
+        font-size: 14px;
+      }
+
+      .feature-list li::before {
+        content: "\f054";
+        font-family: "Font Awesome 6 Free";
+        font-weight: 900;
+        position: absolute;
+        left: 0;
+        top: 2px;
+        color: var(--primary);
+        font-size: 12px;
+      }
+
+      .specialty-cta {
+        display: flex;
+        justify-content: flex-end;
+      }
+
+      .btn {
+        display: inline-flex;
+        align-items: center;
+        justify-content: center;
+        padding: 12px 25px;
+        border-radius: 30px;
+        font-weight: 600;
+        font-size: 14px;
+        text-decoration: none;
+        cursor: pointer;
+        transition: all 0.3s ease;
+        border: none;
+        gap: 8px;
+      }
+
+      .btn-primary {
+        background-color: var(--primary);
+        color: var(--white);
+      }
+
+      .btn-primary:hover {
+        background-color: var(--primary-dark);
+        transform: translateY(-3px);
+        box-shadow: 0 5px 15px rgba(0, 180, 216, 0.3);
+      }
+
+      /* Responsive Styles */
+      @media (max-width: 992px) {
+        .specialty-grid {
+          grid-template-columns: 1fr;
+        }
+      }
+
+      @media (max-width: 768px) {
+        .section-header {
+          padding-top: 80px;
+        }
+
+        .section-header h2 {
+          font-size: 32px;
+        }
+
+        .specialty-header {
+          flex-direction: column;
+          text-align: center;
+          padding: 20px;
+        }
+
+        .specialty-icon {
+          margin-right: 0;
+          margin-bottom: 15px;
+        }
+      }
+
+      @media (max-width: 576px) {
+        .section-header h2 {
+          font-size: 28px;
+        }
+
+        .specialty-card {
+          border-left: 3px solid var(--primary);
+        }
+      }
+    </style>
+  </head>
+  <body>
+    <!-- Header -->
+
+    <header class="header">
+      <div class="container header-container">
+        <!-- Logo movido a la derecha -->
+         <!-- <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcS8rZzbqHhgitJ8bALnxHJFPjZe1E6zfty1Xw&s" width="75" height="75" alt=""> -->
+        <a href="/index.html" class="logo">
+          <div class="logo-icon">
+            <i class="fas fa-heartbeat"></i>
+          </div>
+          <div class="logo-text">
+            <h1>CEMSAP</h1>
+            <span>Centro Médico Especializado</span>
+          </div>
+        </a>
+        <!-- Contacto con más espacio -->
+        <div class="contact-container">
+          <div class="contact-item phone">
+            <div class="contact-icon">
+              <i class="fas fa-phone-alt"></i>
+            </div>
+            <div class="contact-text">
+              <span class="contact-label">Llámanos</span>
+              <span class="contact-value">909-528-9448</span>
+            </div>
+          </div>
+          <div class="contact-item email">
+            <div class="contact-icon">
+              <i class="fas fa-envelope"></i>
+            </div>
+            <div class="contact-text">
+              <span class="contact-label">Escríbenos</span>
+              <span class="contact-value">cemxaprd@gmail.com</span>
+            </div>
+          </div>
+        </div>
+
+        <!-- Navegación mejor espaciada -->
+        <nav class="navbar">
+          <div class="menu-toggle" id="mobile-menu">
+            <span></span>
+            <span></span>
+            <span></span>
+          </div>
+          <ul class="nav-menu">
+            <li><a href="/index.html" class="nav-link active">Inicio</a></li>
+            <li><a href="/contacto.html" class="nav-link">Nosotros</a></li>
+            <li><a href="#agendar-cita" class="btn btn-appointment">Agendar Cita</a></li>
+          </ul>
+        </nav>
+      </div>
+    </header>
+
+    <!-- Specialties Page Content -->
+    <section class="specialties-page">
+      <div class="container">
+        <div class="section-header">
+          <span class="section-subtitle">Expertos en</span>
+          <h2>
+            Nuestras
+            <span style="color: var(--primary)">Especialidades Médicas</span>
+          </h2>
+          <div class="section-divider">
+            <span></span>
+            <i class="fas fa-heartbeat"></i>
+            <span></span>
+          </div>
+        </div>
+
+        <div class="specialty-grid">
+          <!-- Urología -->
+          <div class="specialty-card">
+            <div class="specialty-header">
+              <div class="specialty-icon">
+                <i class="fas fa-procedures"></i>
+              </div>
+              <h3 class="specialty-title">Urología</h3>
+            </div>
+            <div class="specialty-content">
+              <p class="specialty-description">
+                Diagnóstico y tratamiento de enfermedades del tracto urinario y
+                sistema reproductor masculino. Nuestros urólogos ofrecen
+                atención integral con tecnología de vanguardia.
+              </p>
+
+              <div class="specialty-features">
+                <h4>
+                  <i class="fas fa-stethoscope"></i>
+                  Tratamientos
+                </h4>
+                <ul class="feature-list">
+                  <li>Cálculos renales y ureterales</li>
+                  <li>Hiperplasia prostática benigna</li>
+                  <li>Cáncer de próstata</li>
+                  <li>Infecciones urinarias recurrentes</li>
+                  <li>Disfunción eréctil</li>
+                  <li>Cirugía robótica y laparoscópica</li>
+                </ul>
+              </div>
+
+              <div class="specialty-cta">
+                <a href="#" class="btn btn-primary">
+                  <span>Agendar Cita</span>
+                  <i class="fas fa-calendar-check"></i>
+                </a>
+              </div>
+            </div>
+          </div>
+
+          <!-- Ginecología -->
+          <div class="specialty-card">
+            <div class="specialty-header">
+              <div class="specialty-icon">
+                <i class="fas fa-female"></i>
+              </div>
+              <h3 class="specialty-title">Ginecología</h3>
+            </div>
+            <div class="specialty-content">
+              <p class="specialty-description">
+                Cuidado integral de la salud femenina en todas las etapas de la
+                vida. Prevención, diagnóstico y tratamiento de condiciones
+                ginecológicas con enfoque humanizado.
+              </p>
+
+              <div class="specialty-features">
+                <h4>
+                  <i class="fas fa-stethoscope"></i>
+                  Servicios
+                </h4>
+                <ul class="feature-list">
+                  <li>Control ginecológico anual</li>
+                  <li>Planificación familiar</li>
+                  <li>Menopausia y climaterio</li>
+                  <li>Ecografías ginecológicas</li>
+                  <li>Tratamiento de endometriosis</li>
+                  <li>Cirugía ginecológica mínimamente invasiva</li>
+                </ul>
+              </div>
+
+              <div class="specialty-cta">
+                <a href="#" class="btn btn-primary">
+                  <span>Agendar Cita</span>
+                  <i class="fas fa-calendar-check"></i>
+                </a>
+              </div>
+            </div>
+          </div>
+
+          <!-- Oftalmología -->
+          <div class="specialty-card">
+            <div class="specialty-header">
+              <div class="specialty-icon">
+                <i class="fas fa-eye"></i>
+              </div>
+              <h3 class="specialty-title">Oftalmología</h3>
+            </div>
+            <div class="specialty-content">
+              <p class="specialty-description">
+                Cuidado especializado de la visión con equipos de última
+                generación. Desde exámenes de rutina hasta cirugías complejas,
+                protegiendo uno de tus sentidos más valiosos.
+              </p>
+
+              <div class="specialty-features">
+                <h4>
+                  <i class="fas fa-stethoscope"></i>
+                  Áreas de atención
+                </h4>
+                <ul class="feature-list">
+                  <li>Cirugía de cataratas</li>
+                  <li>Corrección de miopía, astigmatismo e hipermetropía</li>
+                  <li>Glaucoma</li>
+                  <li>Retinopatía diabética</li>
+                  <li>Oftalmología pediátrica</li>
+                  <li>Tratamiento de ojo seco</li>
+                </ul>
+              </div>
+
+              <div class="specialty-cta">
+                <a href="#" class="btn btn-primary">
+                  <span>Agendar Cita</span>
+                  <i class="fas fa-calendar-check"></i>
+                </a>
+              </div>
+            </div>
+          </div>
+
+          <!-- Pediatría -->
+          <div class="specialty-card">
+            <div class="specialty-header">
+              <div class="specialty-icon">
+                <i class="fas fa-baby"></i>
+              </div>
+              <h3 class="specialty-title">Pediatría</h3>
+            </div>
+            <div class="specialty-content">
+              <p class="specialty-description">
+                Atención médica especializada para niños y adolescentes.
+                Seguimiento del crecimiento y desarrollo, prevención de
+                enfermedades y manejo de condiciones pediátricas.
+              </p>
+
+              <div class="specialty-features">
+                <h4>
+                  <i class="fas fa-stethoscope"></i>
+                  Cuidados
+                </h4>
+                <ul class="feature-list">
+                  <li>Control del niño sano</li>
+                  <li>Vacunación</li>
+                  <li>Nutrición pediátrica</li>
+                  <li>Enfermedades infecciosas</li>
+                  <li>Alergias infantiles</li>
+                  <li>Desarrollo neurológico</li>
+                </ul>
+              </div>
+
+              <div class="specialty-cta">
+                <a href="#" class="btn btn-primary">
+                  <span>Agendar Cita</span>
+                  <i class="fas fa-calendar-check"></i>
+                </a>
+              </div>
+            </div>
+          </div>
+
+          <!-- Otorrinolaringología -->
+          <div class="specialty-card">
+            <div class="specialty-header">
+              <div class="specialty-icon">
+                <i class="fas fa-ear-listen"></i>
+              </div>
+              <h3 class="specialty-title">Otorrinolaringología</h3>
+            </div>
+            <div class="specialty-content">
+              <p class="specialty-description">
+                Diagnóstico y tratamiento de enfermedades del oído, nariz y
+                garganta. Soluciones integrales para mejorar tu respiración,
+                audición y calidad de vida.
+              </p>
+
+              <div class="specialty-features">
+                <h4>
+                  <i class="fas fa-stethoscope"></i>
+                  Tratamientos
+                </h4>
+                <ul class="feature-list">
+                  <li>Pérdida auditiva</li>
+                  <li>Rinitis y sinusitis</li>
+                  <li>Amigdalitis y adenoides</li>
+                  <li>Vértigo y mareos</li>
+                  <li>Apnea del sueño</li>
+                  <li>Cirugía endoscópica nasal</li>
+                </ul>
+              </div>
+
+              <div class="specialty-cta">
+                <a href="#" class="btn btn-primary">
+                  <span>Agendar Cita</span>
+                  <i class="fas fa-calendar-check"></i>
+                </a>
+              </div>
+            </div>
+          </div>
+
+          <!-- Anestesiología -->
+          <div class="specialty-card">
+            <div class="specialty-header">
+              <div class="specialty-icon">
+                <i class="fas fa-syringe"></i>
+              </div>
+              <h3 class="specialty-title">Anestesiología</h3>
+            </div>
+            <div class="specialty-content">
+              <p class="specialty-description">
+                Manejo seguro del dolor durante procedimientos quirúrgicos.
+                Nuestros especialistas garantizan tu bienestar antes, durante y
+                después de cualquier intervención.
+              </p>
+
+              <div class="specialty-features">
+                <h4>
+                  <i class="fas fa-stethoscope"></i>
+                  Servicios
+                </h4>
+                <ul class="feature-list">
+                  <li>Anestesia general</li>
+                  <li>Anestesia regional</li>
+                  <li>Sedación consciente</li>
+                  <li>Manejo del dolor postoperatorio</li>
+                  <li>Anestesia para procedimientos especiales</li>
+                  <li>Monitoreo intraoperatorio avanzado</li>
+                </ul>
+              </div>
+
+              <div class="specialty-cta">
+                <a href="#" class="btn btn-primary">
+                  <span>Agendar Cita</span>
+                  <i class="fas fa-calendar-check"></i>
+                </a>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <footer class="footer">
+      <div class="footer-top">
+        <div class="container">
+          <div class="footer-content">
+            <div class="footer-logo">
+              <div class="logo">
+                <div class="logo-icon">
+                  <i class="fas fa-heartbeat"></i>
+                </div>
+                <div class="logo-text">
+                  <h2>CEMSAP</h2>
+                  <span>Centro Médico Especializado</span>
+                </div>
+              </div>
+              <p>
+                Comprometidos con tu salud y bienestar, ofreciendo servicios
+                médicos de la más alta calidad con un enfoque humano y
+                personalizado.
+              </p>
+              <div class="footer-social">
+                <a href="#"><i class="fab fa-facebook-f"></i></a>
+                <a href="#"><i class="fab fa-instagram"></i></a>
+                <a href="#"><i class="fab fa-twitter"></i></a>
+                <a href="#"><i class="fab fa-linkedin-in"></i></a>
+              </div>
+            </div>
+            <div class="footer-links">
+              <h3>Enlaces Rápidos</h3>
+              <ul>
+                <li>
+                  <a href="#"><i class="fas fa-chevron-right"></i> Inicio</a>
+                </li>
+                <li>
+                  <a href="#"
+                    ><i class="fas fa-chevron-right"></i> Sobre Nosotros</a
+                  >
+                </li>
+                <li>
+                  <a href="#"
+                    ><i class="fas fa-chevron-right"></i> Especialidades</a
+                  >
+                </li>
+                <li>
+                  <a href="#"><i class="fas fa-chevron-right"></i> Médicos</a>
+                </li>
+                <li>
+                  <a href="#"
+                    ><i class="fas fa-chevron-right"></i> Agendar Cita</a
+                  >
+                </li>
+                <li>
+                  <a href="#"><i class="fas fa-chevron-right"></i> Contacto</a>
+                </li>
+              </ul>
+            </div>
+            <div class="footer-specialties">
+              <h3>Especialidades</h3>
+              <ul>
+                <li>
+                  <a href="#"><i class="fas fa-chevron-right"></i> Urología</a>
+                </li>
+                <li>
+                  <a href="#"
+                    ><i class="fas fa-chevron-right"></i> Ginecología</a
+                  >
+                </li>
+                <li>
+                  <a href="#"
+                    ><i class="fas fa-chevron-right"></i> Oftalmología</a
+                  >
+                </li>
+                <li>
+                  <a href="#"><i class="fas fa-chevron-right"></i> Pediatría</a>
+                </li>
+                <li>
+                  <a href="#"
+                    ><i class="fas fa-chevron-right"></i>
+                    Otorrinolaringología</a
+                  >
+                </li>
+                <li>
+                  <a href="#"
+                    ><i class="fas fa-chevron-right"></i> Anestesiología</a
+                  >
+                </li>
+              </ul>
+            </div>
+            <div class="footer-contact">
+              <h3>Contacto</h3>
+              <div class="contact-info">
+                <p>
+                  <i class="fas fa-map-marker-alt"></i> Av. Principal #123,
+                  Santo Domingo
+                </p>
+                <p><i class="fas fa-phone-alt"></i> 809-525-9446</p>
+                <p><i class="fas fa-envelope"></i> CEMSAPprd@gmail.com</p>
+                <p><i class="fas fa-clock"></i> Lun-Vie: 8:00 AM - 6:00 PM</p>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="footer-bottom">
+        <div class="container">
+          <div class="footer-bottom-content">
+            <p>
+              &copy; 2025 CEMSAP - Centro Médico Especializado. Todos los
+              derechos reservados.
+            </p>
+            <div class="footer-bottom-links">
+              <a href="#">Términos y Condiciones</a>
+              <a href="#">Política de Privacidad</a>
+            </div>
+          </div>
+        </div>
+      </div>
+    </footer>
+
+    <script>
+      // Script para el header fijo
+      window.addEventListener("scroll", function () {
+        const header = document.querySelector(".header");
+        header.classList.toggle("scrolled", window.scrollY > 50);
+      });
+    </script>
+  </body>
+</html>
