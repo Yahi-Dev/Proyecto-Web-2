@@ -1,0 +1,1449 @@
+<!DOCTYPE html>
+<html lang="es">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Horarios - Dr. Carlos Méndez | CEMSAP</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" />
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet" />
+    <style>
+      :root {
+        --primary-light: #caf0f8;
+        --primary-light-2: #90e0ef;
+        --primary: #00b4d8;
+        --primary-dark: #0077b6;
+        --primary-darkest: #03045e;
+        --white: #ffffff;
+        --black: #222222;
+        --gray-light: #f5f5f5;
+        --gray: #e0e0e0;
+        --gray-dark: #888888;
+      }
+
+      * {
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+      }
+
+      body {
+        font-family: "Poppins", sans-serif;
+        color: var(--black);
+        background-color: var(--white);
+        overflow-x: hidden;
+      }
+
+      .container {
+        max-width: 1200px;
+        margin: 0 auto;
+        padding: 0 30px;
+      }
+
+      /* Animaciones personalizadas */
+      @keyframes fadeIn {
+        from { opacity: 0; transform: translateY(20px); }
+        to { opacity: 1; transform: translateY(0); }
+      }
+
+      @keyframes pulse {
+        0% { transform: scale(1); }
+        50% { transform: scale(1.05); }
+        100% { transform: scale(1); }
+      }
+
+      @keyframes float {
+        0% { transform: translateY(0px); }
+        50% { transform: translateY(-10px); }
+        100% { transform: translateY(0px); }
+      }
+
+      @keyframes borderGlow {
+        0% { box-shadow: 0 0 0 0 rgba(0, 180, 216, 0.4); }
+        70% { box-shadow: 0 0 0 10px rgba(0, 180, 216, 0); }
+        100% { box-shadow: 0 0 0 0 rgba(0, 180, 216, 0); }
+      }
+
+      /* Header Styles */
+      .header {
+        position: fixed;
+        top: 0;
+        left: 0;
+        width: 100%;
+        background-color: var(--white);
+        box-shadow: 0 2px 15px rgba(0, 0, 0, 0.1);
+        z-index: 1000;
+        padding: 15px 0;
+        transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.1);
+      }
+
+      .header.scrolled {
+        padding: 10px 0;
+        box-shadow: 0 5px 20px rgba(0, 0, 0, 0.15);
+      }
+
+      .header-container {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+      }
+
+      .logo {
+        display: flex;
+        align-items: center;
+        text-decoration: none;
+        gap: 12px;
+        transition: all 0.3s ease;
+      }
+
+      .logo:hover {
+        transform: scale(1.02);
+      }
+
+      .logo-icon {
+        width: 50px;
+        height: 50px;
+        background-color: var(--primary);
+        color: var(--white);
+        border-radius: 50%;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        font-size: 22px;
+        transition: all 0.3s ease;
+        animation: pulse 2s infinite;
+      }
+
+      .logo:hover .logo-icon {
+        animation: borderGlow 1.5s infinite, pulse 2s infinite;
+      }
+
+      .logo-text h1 {
+        font-size: 26px;
+        font-weight: 700;
+        color: var(--primary-darkest);
+        margin: 0;
+        line-height: 1.1;
+        transition: all 0.3s ease;
+      }
+
+      .logo:hover .logo-text h1 {
+        color: var(--primary-dark);
+      }
+
+      .logo-text span {
+        font-size: 13px;
+        color: var(--gray-dark);
+        display: block;
+        transition: all 0.3s ease;
+      }
+
+      .logo:hover .logo-text span {
+        color: var(--primary);
+      }
+
+      /* Contacto */
+      .contact-container {
+        display: flex;
+        gap: 20px;
+      }
+
+      .contact-item {
+        display: flex;
+        align-items: center;
+        gap: 10px;
+        padding: 8px 15px;
+        border-radius: 30px;
+        transition: all 0.3s ease;
+        background-color: var(--primary-light);
+      }
+
+      .contact-item:hover {
+        transform: translateY(-3px);
+        box-shadow: 0 5px 15px rgba(0, 180, 216, 0.2);
+      }
+
+      .contact-icon {
+        width: 35px;
+        height: 35px;
+        background-color: var(--primary);
+        color: var(--white);
+        border-radius: 50%;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        font-size: 14px;
+      }
+
+      .contact-text {
+        display: flex;
+        flex-direction: column;
+      }
+
+      .contact-label {
+        font-size: 11px;
+        color: var(--gray-dark);
+      }
+
+      .contact-value {
+        font-size: 14px;
+        font-weight: 600;
+        color: var(--primary-darkest);
+      }
+
+      /* Navbar */
+      .navbar {
+        display: flex;
+        align-items: center;
+      }
+
+      .nav-menu {
+        display: flex;
+        list-style: none;
+        gap: 25px;
+      }
+
+      .nav-link {
+        text-decoration: none;
+        color: var(--black);
+        font-weight: 500;
+        font-size: 15px;
+        position: relative;
+        padding: 5px 0;
+        transition: all 0.3s ease;
+      }
+
+      .nav-link::after {
+        content: '';
+        position: absolute;
+        bottom: 0;
+        left: 0;
+        width: 0;
+        height: 2px;
+        background-color: var(--primary);
+        transition: width 0.3s ease;
+      }
+
+      .nav-link:hover::after {
+        width: 100%;
+      }
+
+      .nav-link:hover {
+        color: var(--primary-dark);
+      }
+
+      .nav-link.active {
+        color: var(--primary-dark);
+        font-weight: 600;
+      }
+
+      .nav-link.active::after {
+        width: 100%;
+      }
+
+      .btn-appointment {
+        background-color: var(--primary);
+        color: var(--white);
+        padding: 10px 20px;
+        border-radius: 30px;
+        font-weight: 600;
+        transition: all 0.3s ease;
+        box-shadow: 0 4px 10px rgba(0, 180, 216, 0.3);
+      }
+
+      .btn-appointment:hover {
+        background-color: var(--primary-dark);
+        transform: translateY(-3px);
+        box-shadow: 0 8px 20px rgba(0, 180, 216, 0.4);
+      }
+
+      /* Doctor Schedule Page Styles */
+      .schedule-page {
+        padding: 120px 0 60px;
+        overflow: hidden;
+      }
+
+      /* Doctor Profile Section */
+      .doctor-profile {
+        display: flex;
+        gap: 40px;
+        margin-bottom: 60px;
+        background-color: var(--primary-light);
+        border-radius: 15px;
+        padding: 30px;
+        box-shadow: 0 5px 15px rgba(0, 0, 0, 0.05);
+        animation: fadeIn 0.8s ease-out;
+      }
+
+      .doctor-image {
+        width: 250px;
+        height: 250px;
+        border-radius: 15px;
+        overflow: hidden;
+        flex-shrink: 0;
+        border: 5px solid var(--white);
+        box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+      }
+
+      .doctor-image img {
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+        transition: transform 0.5s ease;
+      }
+
+      .doctor-profile:hover .doctor-image img {
+        transform: scale(1.05);
+      }
+
+      .doctor-details {
+        flex: 1;
+      }
+
+      .doctor-name {
+        font-size: 32px;
+        color: var(--primary-darkest);
+        margin-bottom: 10px;
+      }
+
+      .doctor-specialty {
+        font-size: 18px;
+        color: var(--primary);
+        font-weight: 600;
+        margin-bottom: 20px;
+        display: inline-block;
+        padding: 5px 15px;
+        background-color: rgba(0, 180, 216, 0.1);
+        border-radius: 30px;
+      }
+
+      .doctor-bio {
+        color: var(--gray-dark);
+        line-height: 1.8;
+        margin-bottom: 20px;
+      }
+
+      .doctor-subspecialties {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 10px;
+        margin-bottom: 25px;
+      }
+
+      .doctor-subspecialties li {
+        list-style: none;
+        background-color: var(--white);
+        padding: 5px 15px;
+        border-radius: 30px;
+        font-size: 14px;
+        color: var(--primary-dark);
+        box-shadow: 0 2px 5px rgba(0, 0, 0, 0.05);
+      }
+
+      .doctor-actions {
+        display: flex;
+        gap: 15px;
+      }
+
+      .btn {
+        display: inline-flex;
+        align-items: center;
+        justify-content: center;
+        padding: 12px 25px;
+        border-radius: 30px;
+        font-weight: 600;
+        font-size: 14px;
+        text-decoration: none;
+        cursor: pointer;
+        transition: all 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.1);
+        border: none;
+        gap: 8px;
+        position: relative;
+        overflow: hidden;
+      }
+
+      .btn::before {
+        content: '';
+        position: absolute;
+        top: 0;
+        left: -100%;
+        width: 100%;
+        height: 100%;
+        background: linear-gradient(90deg, transparent, rgba(255,255,255,0.2), transparent);
+        transition: 0.5s;
+      }
+
+      .btn:hover::before {
+        left: 100%;
+      }
+
+      .btn-primary {
+        background-color: var(--primary);
+        color: var(--white);
+      }
+
+      .btn-primary:hover {
+        background-color: var(--primary-dark);
+        transform: translateY(-3px) scale(1.05);
+        box-shadow: 0 8px 25px rgba(0, 180, 216, 0.4);
+      }
+
+      .btn-outline {
+        background-color: transparent;
+        color: var(--primary-dark);
+        border: 2px solid var(--primary);
+      }
+
+      .btn-outline:hover {
+        background-color: var(--primary);
+        color: var(--white);
+        transform: translateY(-3px);
+        box-shadow: 0 5px 15px rgba(0, 180, 216, 0.2);
+      }
+
+      /* Schedule Section */
+      .schedule-section {
+        margin-bottom: 60px;
+      }
+
+      .section-header {
+        text-align: center;
+        margin-bottom: 40px;
+      }
+
+      .section-subtitle {
+        display: inline-block;
+        font-size: 16px;
+        font-weight: 600;
+        color: var(--primary);
+        margin-bottom: 15px;
+        text-transform: uppercase;
+        letter-spacing: 1px;
+        position: relative;
+      }
+
+      .section-subtitle::after {
+        content: "";
+        position: absolute;
+        bottom: -5px;
+        left: 50%;
+        transform: translateX(-50%);
+        width: 50px;
+        height: 2px;
+        background-color: var(--primary);
+        transition: all 0.5s ease;
+      }
+
+      .section-header:hover .section-subtitle::after {
+        width: 70px;
+        background-color: var(--primary-dark);
+      }
+
+      .section-header h2 {
+        font-size: 36px;
+        font-weight: 700;
+        color: var(--primary-darkest);
+        margin-bottom: 20px;
+        transition: all 0.3s ease;
+      }
+
+      .section-header:hover h2 {
+        text-shadow: 0 5px 15px rgba(0, 180, 216, 0.2);
+      }
+
+      .section-divider {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        gap: 10px;
+      }
+
+      .section-divider span {
+        display: block;
+        width: 50px;
+        height: 2px;
+        background-color: var(--gray);
+        transition: all 0.5s ease;
+      }
+
+      .section-header:hover .section-divider span {
+        width: 70px;
+        background-color: var(--primary);
+      }
+
+      .section-divider i {
+        color: var(--primary);
+        font-size: 14px;
+        animation: float 3s ease-in-out infinite;
+      }
+
+      .schedule-container {
+        background-color: var(--white);
+        border-radius: 15px;
+        box-shadow: 0 5px 30px rgba(0, 0, 0, 0.1);
+        overflow: hidden;
+      }
+
+      .schedule-tabs {
+        display: flex;
+        border-bottom: 1px solid var(--gray);
+      }
+
+      .schedule-tab {
+        padding: 15px 25px;
+        font-weight: 600;
+        color: var(--gray-dark);
+        cursor: pointer;
+        transition: all 0.3s ease;
+        position: relative;
+      }
+
+      .schedule-tab.active {
+        color: var(--primary-dark);
+      }
+
+      .schedule-tab.active::after {
+        content: '';
+        position: absolute;
+        bottom: -1px;
+        left: 0;
+        width: 100%;
+        height: 3px;
+        background-color: var(--primary);
+      }
+
+      .schedule-tab:hover:not(.active) {
+        color: var(--primary);
+        background-color: var(--primary-light);
+      }
+
+      .schedule-content {
+        padding: 30px;
+      }
+
+      .schedule-day {
+        display: none;
+        animation: fadeIn 0.5s ease-out;
+      }
+
+      .schedule-day.active {
+        display: block;
+      }
+
+      .schedule-day h3 {
+        font-size: 20px;
+        color: var(--primary-darkest);
+        margin-bottom: 20px;
+        display: flex;
+        align-items: center;
+        gap: 10px;
+      }
+
+      .schedule-day h3 i {
+        color: var(--primary);
+      }
+
+      .time-slots {
+        display: grid;
+        grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+        gap: 15px;
+      }
+
+      .time-slot {
+        background-color: var(--primary-light);
+        padding: 15px;
+        border-radius: 10px;
+        text-align: center;
+        transition: all 0.3s ease;
+        border-left: 3px solid var(--primary);
+      }
+
+      .time-slot:hover {
+        transform: translateY(-5px);
+        box-shadow: 0 5px 15px rgba(0, 180, 216, 0.2);
+        background-color: var(--primary-light-2);
+      }
+
+      .time-slot.booked {
+        background-color: var(--gray-light);
+        color: var(--gray-dark);
+        border-left-color: var(--gray);
+        position: relative;
+      }
+
+      .time-slot.booked::after {
+        content: 'Reservado';
+        position: absolute;
+        top: 5px;
+        right: 5px;
+        background-color: var(--gray-dark);
+        color: var(--white);
+        font-size: 10px;
+        padding: 2px 5px;
+        border-radius: 3px;
+      }
+
+      .time-slot.available {
+        cursor: pointer;
+      }
+
+      .time-slot.available:hover {
+        background-color: var(--primary);
+        color: var(--white);
+      }
+
+      .time-range {
+        font-weight: 600;
+        margin-bottom: 5px;
+      }
+
+      .slot-status {
+        font-size: 12px;
+        text-transform: uppercase;
+        letter-spacing: 1px;
+      }
+
+      .slot-status.available {
+        color: var(--primary-dark);
+      }
+
+      .slot-status.booked {
+        color: var(--gray-dark);
+      }
+
+      /* Location Section */
+      .location-section {
+        margin-bottom: 60px;
+      }
+
+      .location-card {
+        background-color: var(--white);
+        border-radius: 15px;
+        box-shadow: 0 5px 30px rgba(0, 0, 0, 0.1);
+        overflow: hidden;
+        display: flex;
+      }
+
+      .location-map {
+        flex: 1;
+        min-height: 300px;
+      }
+
+      .location-map iframe {
+        width: 100%;
+        height: 100%;
+        border: none;
+      }
+
+      .location-info {
+        width: 350px;
+        padding: 30px;
+        background-color: var(--primary-light);
+      }
+
+      .location-info h3 {
+        font-size: 22px;
+        color: var(--primary-darkest);
+        margin-bottom: 20px;
+      }
+
+      .location-details {
+        display: flex;
+        flex-direction: column;
+        gap: 15px;
+      }
+
+      .location-detail {
+        display: flex;
+        align-items: flex-start;
+        gap: 10px;
+      }
+
+      .location-detail i {
+        color: var(--primary);
+        margin-top: 3px;
+      }
+
+      .location-text {
+        flex: 1;
+      }
+
+      .location-text h4 {
+        font-size: 16px;
+        color: var(--primary-dark);
+        margin-bottom: 5px;
+      }
+
+      .location-text p {
+        color: var(--gray-dark);
+        font-size: 14px;
+      }
+
+      /* Footer */
+      .footer {
+        background-color: var(--primary-darkest);
+        color: var(--white);
+        position: relative;
+        overflow: hidden;
+      }
+
+      .footer::before {
+        content: '';
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 5px;
+        background: linear-gradient(90deg, var(--primary), var(--primary-light));
+        animation: rainbow 8s linear infinite;
+      }
+
+      @keyframes rainbow {
+        0% { background-position: 0% 50%; }
+        50% { background-position: 100% 50%; }
+        100% { background-position: 0% 50%; }
+      }
+
+      .footer-top {
+        padding: 60px 0 30px;
+      }
+
+      .footer-content {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+        gap: 40px;
+      }
+
+      .footer-logo {
+        display: flex;
+        flex-direction: column;
+        gap: 20px;
+      }
+
+      .footer-logo .logo-icon {
+        animation: none;
+      }
+
+      .footer-logo p {
+        color: var(--gray);
+        line-height: 1.6;
+      }
+
+      .footer-social {
+        display: flex;
+        gap: 15px;
+      }
+
+      .footer-social a {
+        width: 40px;
+        height: 40px;
+        background-color: rgba(255,255,255,0.1);
+        border-radius: 50%;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        color: var(--white);
+        transition: all 0.3s ease;
+      }
+
+      .footer-social a:hover {
+        background-color: var(--primary);
+        transform: translateY(-5px);
+      }
+
+      .footer-links h3, .footer-specialties h3, .footer-contact h3 {
+        font-size: 20px;
+        margin-bottom: 25px;
+        position: relative;
+        padding-bottom: 10px;
+      }
+
+      .footer-links h3::after, .footer-specialties h3::after, .footer-contact h3::after {
+        content: '';
+        position: absolute;
+        bottom: 0;
+        left: 0;
+        width: 50px;
+        height: 2px;
+        background-color: var(--primary);
+      }
+
+      .footer-links ul, .footer-specialties ul {
+        list-style: none;
+        display: flex;
+        flex-direction: column;
+        gap: 12px;
+      }
+
+      .footer-links a, .footer-specialties a {
+        color: var(--gray);
+        text-decoration: none;
+        transition: all 0.3s ease;
+        display: flex;
+        align-items: center;
+        gap: 8px;
+      }
+
+      .footer-links a i, .footer-specialties a i {
+        font-size: 12px;
+        color: var(--primary);
+        transition: all 0.3s ease;
+      }
+
+      .footer-links a:hover, .footer-specialties a:hover {
+        color: var(--white);
+        transform: translateX(5px);
+      }
+
+      .footer-links a:hover i, .footer-specialties a:hover i {
+        color: var(--white);
+      }
+
+      .footer-contact .contact-info {
+        display: flex;
+        flex-direction: column;
+        gap: 15px;
+      }
+
+      .footer-contact p {
+        display: flex;
+        align-items: flex-start;
+        gap: 10px;
+        color: var(--gray);
+      }
+
+      .footer-contact i {
+        color: var(--primary);
+        margin-top: 3px;
+      }
+
+      .footer-bottom {
+        background-color: rgba(0,0,0,0.2);
+        padding: 20px 0;
+      }
+
+      .footer-bottom-content {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        color: var(--gray);
+        font-size: 14px;
+      }
+
+      .footer-bottom-links {
+        display: flex;
+        gap: 20px;
+      }
+
+      .footer-bottom-links a {
+        color: var(--gray);
+        text-decoration: none;
+        transition: all 0.3s ease;
+      }
+
+      .footer-bottom-links a:hover {
+        color: var(--primary);
+      }
+
+      /* Responsive Styles */
+      @media (max-width: 1200px) {
+        .contact-container {
+          display: none;
+        }
+      }
+
+      @media (max-width: 992px) {
+        .doctor-profile {
+          flex-direction: column;
+        }
+        
+        .doctor-image {
+          width: 100%;
+          height: 300px;
+        }
+        
+        .location-card {
+          flex-direction: column;
+        }
+        
+        .location-info {
+          width: 100%;
+        }
+        
+        .navbar {
+          display: none;
+        }
+        
+        .menu-toggle {
+          display: flex;
+          flex-direction: column;
+          justify-content: space-between;
+          width: 30px;
+          height: 20px;
+          cursor: pointer;
+        }
+        
+        .menu-toggle span {
+          display: block;
+          width: 100%;
+          height: 3px;
+          background-color: var(--primary-darkest);
+          transition: all 0.3s ease;
+        }
+      }
+
+      @media (max-width: 768px) {
+        .schedule-tabs {
+          flex-wrap: wrap;
+        }
+        
+        .schedule-tab {
+          flex: 1;
+          text-align: center;
+          padding: 12px;
+          font-size: 14px;
+        }
+        
+        .section-header h2 {
+          font-size: 32px;
+        }
+        
+        .footer-content {
+          grid-template-columns: 1fr;
+          gap: 30px;
+        }
+      }
+
+      @media (max-width: 576px) {
+        .doctor-actions {
+          flex-direction: column;
+        }
+        
+        .section-header h2 {
+          font-size: 28px;
+        }
+        
+        .time-slots {
+          grid-template-columns: 1fr;
+        }
+        
+        .footer-bottom-content {
+          flex-direction: column;
+          gap: 15px;
+          text-align: center;
+        }
+        
+        .footer-bottom-links {
+          flex-direction: column;
+          gap: 10px;
+        }
+      }
+    </style>
+  </head>
+  <body>
+    <!-- Header -->
+    <header class="header">
+      <div class="container header-container">
+        <a href="/index.html" class="logo">
+          <div class="logo-icon">
+            <i class="fas fa-heartbeat"></i>
+          </div>
+          <div class="logo-text">
+            <h1>CEMSAP</h1>
+            <span>Centro Médico Especializado</span>
+          </div>
+        </a>
+        
+        <div class="contact-container">
+          <div class="contact-item phone">
+            <div class="contact-icon">
+              <i class="fas fa-phone-alt"></i>
+            </div>
+            <div class="contact-text">
+              <span class="contact-label">Llámanos</span>
+              <span class="contact-value">809-525-9446</span>
+            </div>
+          </div>
+          <div class="contact-item email">
+            <div class="contact-icon">
+              <i class="fas fa-envelope"></i>
+            </div>
+            <div class="contact-text">
+              <span class="contact-label">Escríbenos</span>
+              <span class="contact-value">cemsaprd@gmail.com</span>
+            </div>
+          </div>
+        </div>
+
+        <nav class="navbar">
+          <div class="menu-toggle" id="mobile-menu">
+            <span></span>
+            <span></span>
+            <span></span>
+          </div>
+          <ul class="nav-menu">
+            <li><a href="/index.html" class="nav-link">Inicio</a></li>
+            <li><a href="/nosotros.html" class="nav-link">Nosotros</a></li>
+            <li><a href="/contacto.html" class="nav-link">Contactos</a></li>
+          </ul>
+        </nav>
+      </div>
+    </header>
+
+    <!-- Schedule Page Content -->
+    <main class="schedule-page">
+      <div class="container">
+        <!-- Doctor Profile -->
+        <section class="doctor-profile">
+          <div class="doctor-image">
+            <img src="https://cemdoe.com/wp-content/uploads/2024/11/Pedro-Mena.png" alt="Dr. Carlos Méndez">
+          </div>
+          <div class="doctor-details">
+            <h1 class="doctor-name">Dr. Carlos Méndez</h1>
+            <p class="doctor-specialty">Urología</p>
+            <p class="doctor-bio">
+              Especialista en Urología con más de 15 años de experiencia en el diagnóstico y tratamiento de enfermedades del tracto urinario y sistema reproductor masculino. Miembro de la Sociedad Dominicana de Urología y con formación en técnicas quirúrgicas mínimamente invasivas.
+            </p>
+            <ul class="doctor-subspecialties">
+              <li>Cirugía Urológica</li>
+              <li>Oncología Urológica</li>
+              <li>Andrología</li>
+              <li>Litiasis Renal</li>
+              <li>Urología Pediátrica</li>
+            </ul>
+            <div class="doctor-actions">
+              <a href="#agendar-cita" class="btn btn-primary">
+                <span>Agendar Cita</span>
+                <i class="fas fa-calendar-check"></i>
+              </a>
+              <a href="#ubicacion" class="btn btn-outline">
+                <span>Ver Ubicación</span>
+                <i class="fas fa-map-marker-alt"></i>
+              </a>
+            </div>
+          </div>
+        </section>
+
+        <!-- Schedule Section -->
+        <section class="schedule-section">
+          <div class="section-header">
+            <span class="section-subtitle">Disponibilidad</span>
+            <h2>Horario de <span style="color: var(--primary)">Atención</span></h2>
+            <div class="section-divider">
+              <span></span>
+              <i class="fas fa-clock"></i>
+              <span></span>
+            </div>
+          </div>
+
+          <div class="schedule-container">
+            <div class="schedule-tabs">
+              <div class="schedule-tab active" data-day="lunes">Lunes</div>
+              <div class="schedule-tab" data-day="martes">Martes</div>
+              <div class="schedule-tab" data-day="miercoles">Miércoles</div>
+              <div class="schedule-tab" data-day="jueves">Jueves</div>
+              <div class="schedule-tab" data-day="viernes">Viernes</div>
+              <div class="schedule-tab" data-day="sabado">Sábado</div>
+            </div>
+
+            <div class="schedule-content">
+              <!-- Lunes -->
+              <div class="schedule-day active" id="lunes">
+                <h3><i class="fas fa-calendar-day"></i> Lunes</h3>
+                <div class="time-slots">
+                  <div class="time-slot available">
+                    <div class="time-range">8:00 AM - 9:00 AM</div>
+                    <div class="slot-status available">Disponible</div>
+                  </div>
+                  <div class="time-slot booked">
+                    <div class="time-range">9:00 AM - 10:00 AM</div>
+                    <div class="slot-status booked">Reservado</div>
+                  </div>
+                  <div class="time-slot available">
+                    <div class="time-range">10:00 AM - 11:00 AM</div>
+                    <div class="slot-status available">Disponible</div>
+                  </div>
+                  <div class="time-slot available">
+                    <div class="time-range">11:00 AM - 12:00 PM</div>
+                    <div class="slot-status available">Disponible</div>
+                  </div>
+                  <div class="time-slot booked">
+                    <div class="time-range">2:00 PM - 3:00 PM</div>
+                    <div class="slot-status booked">Reservado</div>
+                  </div>
+                  <div class="time-slot available">
+                    <div class="time-range">3:00 PM - 4:00 PM</div>
+                    <div class="slot-status available">Disponible</div>
+                  </div>
+                </div>
+              </div>
+
+              <!-- Martes -->
+              <div class="schedule-day" id="martes">
+                <h3><i class="fas fa-calendar-day"></i> Martes</h3>
+                <div class="time-slots">
+                  <div class="time-slot booked">
+                    <div class="time-range">8:00 AM - 9:00 AM</div>
+                    <div class="slot-status booked">Reservado</div>
+                  </div>
+                  <div class="time-slot available">
+                    <div class="time-range">9:00 AM - 10:00 AM</div>
+                    <div class="slot-status available">Disponible</div>
+                  </div>
+                  <div class="time-slot available">
+                    <div class="time-range">10:00 AM - 11:00 AM</div>
+                    <div class="slot-status available">Disponible</div>
+                  </div>
+                  <div class="time-slot booked">
+                    <div class="time-range">11:00 AM - 12:00 PM</div>
+                    <div class="slot-status booked">Reservado</div>
+                  </div>
+                  <div class="time-slot available">
+                    <div class="time-range">2:00 PM - 3:00 PM</div>
+                    <div class="slot-status available">Disponible</div>
+                  </div>
+                  <div class="time-slot available">
+                    <div class="time-range">3:00 PM - 4:00 PM</div>
+                    <div class="slot-status available">Disponible</div>
+                  </div>
+                </div>
+              </div>
+
+              <!-- Miércoles -->
+              <div class="schedule-day" id="miercoles">
+                <h3><i class="fas fa-calendar-day"></i> Miércoles</h3>
+                <div class="time-slots">
+                  <div class="time-slot available">
+                    <div class="time-range">8:00 AM - 9:00 AM</div>
+                    <div class="slot-status available">Disponible</div>
+                  </div>
+                  <div class="time-slot available">
+                    <div class="time-range">9:00 AM - 10:00 AM</div>
+                    <div class="slot-status available">Disponible</div>
+                  </div>
+                  <div class="time-slot booked">
+                    <div class="time-range">10:00 AM - 11:00 AM</div>
+                    <div class="slot-status booked">Reservado</div>
+                  </div>
+                  <div class="time-slot available">
+                    <div class="time-range">11:00 AM - 12:00 PM</div>
+                    <div class="slot-status available">Disponible</div>
+                  </div>
+                  <div class="time-slot available">
+                    <div class="time-range">2:00 PM - 3:00 PM</div>
+                    <div class="slot-status available">Disponible</div>
+                  </div>
+                  <div class="time-slot booked">
+                    <div class="time-range">3:00 PM - 4:00 PM</div>
+                    <div class="slot-status booked">Reservado</div>
+                  </div>
+                </div>
+              </div>
+
+              <!-- Jueves -->
+              <div class="schedule-day" id="jueves">
+                <h3><i class="fas fa-calendar-day"></i> Jueves</h3>
+                <div class="time-slots">
+                  <div class="time-slot available">
+                    <div class="time-range">8:00 AM - 9:00 AM</div>
+                    <div class="slot-status available">Disponible</div>
+                  </div>
+                  <div class="time-slot booked">
+                    <div class="time-range">9:00 AM - 10:00 AM</div>
+                    <div class="slot-status booked">Reservado</div>
+                  </div>
+                  <div class="time-slot available">
+                    <div class="time-range">10:00 AM - 11:00 AM</div>
+                    <div class="slot-status available">Disponible</div>
+                  </div>
+                  <div class="time-slot available">
+                    <div class="time-range">11:00 AM - 12:00 PM</div>
+                    <div class="slot-status available">Disponible</div>
+                  </div>
+                  <div class="time-slot available">
+                    <div class="time-range">2:00 PM - 3:00 PM</div>
+                    <div class="slot-status available">Disponible</div>
+                  </div>
+                  <div class="time-slot booked">
+                    <div class="time-range">3:00 PM - 4:00 PM</div>
+                    <div class="slot-status booked">Reservado</div>
+                  </div>
+                </div>
+              </div>
+
+              <!-- Viernes -->
+              <div class="schedule-day" id="viernes">
+                <h3><i class="fas fa-calendar-day"></i> Viernes</h3>
+                <div class="time-slots">
+                  <div class="time-slot available">
+                    <div class="time-range">8:00 AM - 9:00 AM</div>
+                    <div class="slot-status available">Disponible</div>
+                  </div>
+                  <div class="time-slot available">
+                    <div class="time-range">9:00 AM - 10:00 AM</div>
+                    <div class="slot-status available">Disponible</div>
+                  </div>
+                  <div class="time-slot booked">
+                    <div class="time-range">10:00 AM - 11:00 AM</div>
+                    <div class="slot-status booked">Reservado</div>
+                  </div>
+                  <div class="time-slot available">
+                    <div class="time-range">11:00 AM - 12:00 PM</div>
+                    <div class="slot-status available">Disponible</div>
+                  </div>
+                  <div class="time-slot available">
+                    <div class="time-range">2:00 PM - 3:00 PM</div>
+                    <div class="slot-status available">Disponible</div>
+                  </div>
+                  <div class="time-slot available">
+                    <div class="time-range">3:00 PM - 4:00 PM</div>
+                    <div class="slot-status available">Disponible</div>
+                  </div>
+                </div>
+              </div>
+
+              <!-- Sábado -->
+              <div class="schedule-day" id="sabado">
+                <h3><i class="fas fa-calendar-day"></i> Sábado</h3>
+                <div class="time-slots">
+                  <div class="time-slot available">
+                    <div class="time-range">9:00 AM - 10:00 AM</div>
+                    <div class="slot-status available">Disponible</div>
+                  </div>
+                  <div class="time-slot available">
+                    <div class="time-range">10:00 AM - 11:00 AM</div>
+                    <div class="slot-status available">Disponible</div>
+                  </div>
+                  <div class="time-slot booked">
+                    <div class="time-range">11:00 AM - 12:00 PM</div>
+                    <div class="slot-status booked">Reservado</div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </section>
+
+        <!-- Location Section -->
+        <section class="location-section" id="ubicacion">
+          <div class="section-header">
+            <span class="section-subtitle">Dónde nos encontramos</span>
+            <h2>Ubicación del <span style="color: var(--primary)">Consultorio</span></h2>
+            <div class="section-divider">
+              <span></span>
+              <i class="fas fa-map-marker-alt"></i>
+              <span></span>
+            </div>
+          </div>
+
+          <div class="location-card">
+            <div class="location-map">
+              <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3784.044888188209!2d-70.64412892401406!3d18.47283798255822!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x8eb0296f3b299165%3A0x9c7b3b5b5b5b5b5b!2sCl%C3%ADnica%20San%20Antonio%20de%20Padua!5e0!3m2!1ses!2sdo!4v1620000000000!5m2!1ses!2sdo" allowfullscreen="" loading="lazy"></iframe>
+            </div>
+            <div class="location-info">
+              <h3>Consultorio Principal</h3>
+              <div class="location-details">
+                <div class="location-detail">
+                  <i class="fas fa-map-marker-alt"></i>
+                  <div class="location-text">
+                    <h4>Dirección</h4>
+                    <p>Av. Principal #123, Bonao, República Dominicana</p>
+                  </div>
+                </div>
+                <div class="location-detail">
+                  <i class="fas fa-clock"></i>
+                  <div class="location-text">
+                    <h4>Horario de Atención</h4>
+                    <p>Lunes a Viernes: 8:00 AM - 5:00 PM<br>Sábados: 9:00 AM - 1:00 PM</p>
+                  </div>
+                </div>
+                <div class="location-detail">
+                  <i class="fas fa-phone-alt"></i>
+                  <div class="location-text">
+                    <h4>Teléfono</h4>
+                    <p>+1 809-525-9446</p>
+                  </div>
+                </div>
+                <div class="location-detail">
+                  <i class="fas fa-envelope"></i>
+                  <div class="location-text">
+                    <h4>Email</h4>
+                    <p>consultorio@drcarlosmendez.com</p>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </section>
+      </div>
+    </main>
+
+    <footer class="footer">
+      <div class="footer-top">
+        <div class="container">
+          <div class="footer-content">
+            <div class="footer-logo">
+              <div class="logo">
+                <div class="logo-icon">
+                  <i class="fas fa-heartbeat"></i>
+                </div>
+                <div class="logo-text">
+                  <h2>CEMSAP</h2>
+                  <span>Centro Médico Especializado</span>
+                </div>
+              </div>
+              <p>
+                Comprometidos con tu salud y bienestar, ofreciendo servicios
+                médicos de la más alta calidad con un enfoque humano y
+                personalizado.
+              </p>
+              <div class="footer-social">
+                <a href="#"><i class="fab fa-facebook-f"></i></a>
+                <a href="#"><i class="fab fa-instagram"></i></a>
+                <a href="#"><i class="fab fa-twitter"></i></a>
+                <a href="#"><i class="fab fa-linkedin-in"></i></a>
+              </div>
+            </div>
+            <div class="footer-links">
+              <h3>Enlaces Rápidos</h3>
+              <ul>
+                <li>
+                  <a href="/index.html"><i class="fas fa-chevron-right"></i> Inicio</a>
+                </li>
+                <li>
+                  <a href="/nosotros.html"
+                    ><i class="fas fa-chevron-right"></i> Sobre Nosotros</a
+                  >
+                </li>
+                <li>
+                  <a href="/especialidades.html"
+                    ><i class="fas fa-chevron-right"></i> Especialidades</a
+                  >
+                </li>
+                <li>
+                  <a href="#nuestros-medicos"><i class="fas fa-chevron-right"></i> Médicos</a>
+                </li>
+                <li>
+                  <a href="#agendar-cita"
+                    ><i class="fas fa-chevron-right"></i> Agendar Cita</a
+                  >
+                </li>
+                <li>
+                  <a href="/contacto.html"><i class="fas fa-chevron-right"></i> Contacto</a>
+                </li>
+              </ul>
+            </div>
+            <div class="footer-specialties">
+              <h3>Especialidades</h3>
+              <ul>
+                <li>
+                  <a href="/especialidades.html"><i class="fas fa-chevron-right"></i> Urología</a>
+                </li>
+                <li>
+                  <a href="/especialidades.html"
+                    ><i class="fas fa-chevron-right"></i> Ginecología</a
+                  >
+                </li>
+                <li>
+                  <a href="/especialidades.html"
+                    ><i class="fas fa-chevron-right"></i> Oftalmología</a
+                  >
+                </li>
+                <li>
+                  <a href="/especialidades.html"><i class="fas fa-chevron-right"></i> Pediatría</a>
+                </li>
+                <li>
+                  <a href="/especialidades.html"
+                    ><i class="fas fa-chevron-right"></i>
+                    Otorrinolaringología</a
+                  >
+                </li>
+                <li>
+                  <a href="/especialidades.html"
+                    ><i class="fas fa-chevron-right"></i> Anestesiología</a
+                  >
+                </li>
+              </ul>
+            </div>
+            <div class="footer-contact">
+              <h3>Contacto</h3>
+              <div class="contact-info">
+                <p>
+                  <i class="fas fa-map-marker-alt"></i> Av. Principal #123,
+                  Santo Domingo
+                </p>
+                <p><i class="fas fa-phone-alt"></i> 809-525-9446</p>
+                <p><i class="fas fa-envelope"></i> CEMSAPprd@gmail.com</p>
+                <p><i class="fas fa-clock"></i> Lun-Vie: 8:00 AM - 6:00 PM</p>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="footer-bottom">
+        <div class="container">
+          <div class="footer-bottom-content">
+            <p>
+              &copy; 2025 CEMSAP - Centro Médico Especializado. Todos los
+              derechos reservados.
+            </p>
+            <div class="footer-bottom-links">
+              <a href="#">Términos y Condiciones</a>
+              <a href="#">Política de Privacidad</a>
+            </div>
+          </div>
+        </div>
+      </div>
+    </footer>
+
+    <script>
+      // Script para el header fijo
+      window.addEventListener("scroll", function () {
+        const header = document.querySelector(".header");
+        header.classList.toggle("scrolled", window.scrollY > 50);
+      });
+      
+      // Cambio de pestañas de horario
+      const scheduleTabs = document.querySelectorAll('.schedule-tab');
+      const scheduleDays = document.querySelectorAll('.schedule-day');
+      
+      scheduleTabs.forEach(tab => {
+        tab.addEventListener('click', () => {
+          // Remover clase active de todas las pestañas
+          scheduleTabs.forEach(t => t.classList.remove('active'));
+          // Añadir clase active a la pestaña clickeada
+          tab.classList.add('active');
+          
+          // Ocultar todos los días
+          scheduleDays.forEach(day => day.classList.remove('active'));
+          // Mostrar el día correspondiente
+          const dayId = tab.getAttribute('data-day');
+          document.getElementById(dayId).classList.add('active');
+        });
+      });
+      
+      // Selección de horario disponible
+      const availableSlots = document.querySelectorAll('.time-slot.available');
+      availableSlots.forEach(slot => {
+        slot.addEventListener('click', () => {
+          // Remover selección previa
+          availableSlots.forEach(s => s.classList.remove('selected'));
+          // Marcar como seleccionado
+          slot.classList.add('selected');
+          
+          // Aquí podrías abrir un modal para confirmar la cita
+          alert(`Has seleccionado el horario: ${slot.querySelector('.time-range').textContent}\n\nSerás redirigido al formulario de agendamiento.`);
+          window.location.href = "#agendar-cita";
+        });
+      });
+      
+      // Menú móvil
+      const menuToggle = document.querySelector('.menu-toggle');
+      const navMenu = document.querySelector('.nav-menu');
+      
+      menuToggle.addEventListener('click', () => {
+        menuToggle.classList.toggle('active');
+        navMenu.classList.toggle('active');
+      });
+    </script>
+  </body>
+</html>

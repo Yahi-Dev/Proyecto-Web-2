@@ -3,7 +3,7 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>CEMSAP - Centro Médico Especializado</title>
+    <title>Horarios - Dr. Carlos Méndez | CEMSAP</title>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" />
     <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet" />
     <style>
@@ -256,12 +256,158 @@
         box-shadow: 0 8px 20px rgba(0, 180, 216, 0.4);
       }
 
-      /* Section Header */
+      /* Doctor Schedule Page Styles */
+      .schedule-page {
+        padding: 120px 0 60px;
+        overflow: hidden;
+      }
+
+      /* Doctor Profile Section */
+      .doctor-profile {
+        display: flex;
+        gap: 40px;
+        margin-bottom: 60px;
+        background-color: var(--primary-light);
+        border-radius: 15px;
+        padding: 30px;
+        box-shadow: 0 5px 15px rgba(0, 0, 0, 0.05);
+        animation: fadeIn 0.8s ease-out;
+      }
+
+      .doctor-image {
+        width: 250px;
+        height: 250px;
+        border-radius: 15px;
+        overflow: hidden;
+        flex-shrink: 0;
+        border: 5px solid var(--white);
+        box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+      }
+
+      .doctor-image img {
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+        transition: transform 0.5s ease;
+      }
+
+      .doctor-profile:hover .doctor-image img {
+        transform: scale(1.05);
+      }
+
+      .doctor-details {
+        flex: 1;
+      }
+
+      .doctor-name {
+        font-size: 32px;
+        color: var(--primary-darkest);
+        margin-bottom: 10px;
+      }
+
+      .doctor-specialty {
+        font-size: 18px;
+        color: var(--primary);
+        font-weight: 600;
+        margin-bottom: 20px;
+        display: inline-block;
+        padding: 5px 15px;
+        background-color: rgba(0, 180, 216, 0.1);
+        border-radius: 30px;
+      }
+
+      .doctor-bio {
+        color: var(--gray-dark);
+        line-height: 1.8;
+        margin-bottom: 20px;
+      }
+
+      .doctor-subspecialties {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 10px;
+        margin-bottom: 25px;
+      }
+
+      .doctor-subspecialties li {
+        list-style: none;
+        background-color: var(--white);
+        padding: 5px 15px;
+        border-radius: 30px;
+        font-size: 14px;
+        color: var(--primary-dark);
+        box-shadow: 0 2px 5px rgba(0, 0, 0, 0.05);
+      }
+
+      .doctor-actions {
+        display: flex;
+        gap: 15px;
+      }
+
+      .btn {
+        display: inline-flex;
+        align-items: center;
+        justify-content: center;
+        padding: 12px 25px;
+        border-radius: 30px;
+        font-weight: 600;
+        font-size: 14px;
+        text-decoration: none;
+        cursor: pointer;
+        transition: all 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.1);
+        border: none;
+        gap: 8px;
+        position: relative;
+        overflow: hidden;
+      }
+
+      .btn::before {
+        content: '';
+        position: absolute;
+        top: 0;
+        left: -100%;
+        width: 100%;
+        height: 100%;
+        background: linear-gradient(90deg, transparent, rgba(255,255,255,0.2), transparent);
+        transition: 0.5s;
+      }
+
+      .btn:hover::before {
+        left: 100%;
+      }
+
+      .btn-primary {
+        background-color: var(--primary);
+        color: var(--white);
+      }
+
+      .btn-primary:hover {
+        background-color: var(--primary-dark);
+        transform: translateY(-3px) scale(1.05);
+        box-shadow: 0 8px 25px rgba(0, 180, 216, 0.4);
+      }
+
+      .btn-outline {
+        background-color: transparent;
+        color: var(--primary-dark);
+        border: 2px solid var(--primary);
+      }
+
+      .btn-outline:hover {
+        background-color: var(--primary);
+        color: var(--white);
+        transform: translateY(-3px);
+        box-shadow: 0 5px 15px rgba(0, 180, 216, 0.2);
+      }
+
+      /* Schedule Section */
+      .schedule-section {
+        margin-bottom: 60px;
+      }
+
       .section-header {
         text-align: center;
-        margin-bottom: 60px;
-        padding-top: 100px;
-        animation: fadeIn 0.8s ease-out;
+        margin-bottom: 40px;
       }
 
       .section-subtitle {
@@ -330,211 +476,206 @@
         animation: float 3s ease-in-out infinite;
       }
 
-      /* Specialties Page Styles */
-      .specialties-page {
-        padding: 100px 0;
-        overflow: hidden;
-      }
-
-      .specialty-grid {
-        display: grid;
-        grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
-        gap: 30px;
-      }
-
-      .specialty-card {
+      .schedule-container {
         background-color: var(--white);
-        border-radius: 10px;
-        box-shadow: 0 5px 20px rgba(0, 0, 0, 0.05);
+        border-radius: 15px;
+        box-shadow: 0 5px 30px rgba(0, 0, 0, 0.1);
         overflow: hidden;
-        transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.1);
-        border-left: 5px solid var(--primary);
-        opacity: 0;
-        transform: translateY(30px);
-        animation: fadeIn 0.6s forwards;
       }
 
-      .specialty-card:nth-child(1) { animation-delay: 0.1s; }
-      .specialty-card:nth-child(2) { animation-delay: 0.2s; }
-      .specialty-card:nth-child(3) { animation-delay: 0.3s; }
-      .specialty-card:nth-child(4) { animation-delay: 0.4s; }
-      .specialty-card:nth-child(5) { animation-delay: 0.5s; }
-      .specialty-card:nth-child(6) { animation-delay: 0.6s; }
-
-      .specialty-card:hover {
-        transform: translateY(-10px) scale(1.02);
-        box-shadow: 0 15px 30px rgba(0, 180, 216, 0.3);
-      }
-
-      .specialty-header {
+      .schedule-tabs {
         display: flex;
-        align-items: center;
-        padding: 25px;
-        background-color: var(--primary-light);
         border-bottom: 1px solid var(--gray);
-        transition: all 0.3s ease;
       }
 
-      .specialty-card:hover .specialty-header {
-        background-color: var(--primary-light-2);
-      }
-
-      .specialty-icon {
-        width: 60px;
-        height: 60px;
-        background-color: var(--primary);
-        color: var(--white);
-        border-radius: 50%;
-        display: flex;
-        justify-content: center;
-        align-items: center;
-        font-size: 24px;
-        margin-right: 20px;
-        flex-shrink: 0;
-        transition: all 0.3s ease;
-      }
-
-      .specialty-card:hover .specialty-icon {
-        transform: rotate(15deg);
-        background-color: var(--primary-dark);
-      }
-
-      .specialty-title {
-        font-size: 22px;
-        font-weight: 700;
-        color: var(--primary-darkest);
-        transition: all 0.3s ease;
-      }
-
-      .specialty-card:hover .specialty-title {
-        color: var(--primary-dark);
-      }
-
-      .specialty-content {
-        padding: 25px;
-      }
-
-      .specialty-description {
+      .schedule-tab {
+        padding: 15px 25px;
+        font-weight: 600;
         color: var(--gray-dark);
-        margin-bottom: 20px;
-        line-height: 1.6;
+        cursor: pointer;
         transition: all 0.3s ease;
+        position: relative;
       }
 
-      .specialty-card:hover .specialty-description {
-        color: var(--black);
-      }
-
-      .specialty-features {
-        margin-bottom: 25px;
-      }
-
-      .specialty-features h4 {
-        font-size: 16px;
+      .schedule-tab.active {
         color: var(--primary-dark);
-        margin-bottom: 15px;
+      }
+
+      .schedule-tab.active::after {
+        content: '';
+        position: absolute;
+        bottom: -1px;
+        left: 0;
+        width: 100%;
+        height: 3px;
+        background-color: var(--primary);
+      }
+
+      .schedule-tab:hover:not(.active) {
+        color: var(--primary);
+        background-color: var(--primary-light);
+      }
+
+      .schedule-content {
+        padding: 30px;
+      }
+
+      .schedule-day {
+        display: none;
+        animation: fadeIn 0.5s ease-out;
+      }
+
+      .schedule-day.active {
+        display: block;
+      }
+
+      .schedule-day h3 {
+        font-size: 20px;
+        color: var(--primary-darkest);
+        margin-bottom: 20px;
         display: flex;
         align-items: center;
         gap: 10px;
-        transition: all 0.3s ease;
       }
 
-      .specialty-card:hover .specialty-features h4 {
-        color: var(--primary-darkest);
-      }
-
-      .specialty-features h4::after {
-        content: "";
-        flex: 1;
-        height: 1px;
-        background-color: var(--gray);
-        margin-left: 10px;
-        transition: all 0.3s ease;
-      }
-
-      .specialty-card:hover .specialty-features h4::after {
-        background-color: var(--primary);
-      }
-
-      .feature-list {
-        list-style: none;
-      }
-
-      .feature-list li {
-        margin-bottom: 10px;
-        padding-left: 25px;
-        position: relative;
-        font-size: 14px;
-        transition: all 0.3s ease;
-      }
-
-      .specialty-card:hover .feature-list li {
-        transform: translateX(5px);
-      }
-
-      .feature-list li::before {
-        content: "\f054";
-        font-family: "Font Awesome 6 Free";
-        font-weight: 900;
-        position: absolute;
-        left: 0;
-        top: 2px;
+      .schedule-day h3 i {
         color: var(--primary);
-        font-size: 12px;
+      }
+
+      .time-slots {
+        display: grid;
+        grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+        gap: 15px;
+      }
+
+      .time-slot {
+        background-color: var(--primary-light);
+        padding: 15px;
+        border-radius: 10px;
+        text-align: center;
         transition: all 0.3s ease;
+        border-left: 3px solid var(--primary);
       }
 
-      .specialty-card:hover .feature-list li::before {
-        color: var(--primary-dark);
-        transform: translateX(5px);
+      .time-slot:hover {
+        transform: translateY(-5px);
+        box-shadow: 0 5px 15px rgba(0, 180, 216, 0.2);
+        background-color: var(--primary-light-2);
       }
 
-      .specialty-cta {
-        display: flex;
-        justify-content: flex-end;
-      }
-
-      .btn {
-        display: inline-flex;
-        align-items: center;
-        justify-content: center;
-        padding: 12px 25px;
-        border-radius: 30px;
-        font-weight: 600;
-        font-size: 14px;
-        text-decoration: none;
-        cursor: pointer;
-        transition: all 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.1);
-        border: none;
-        gap: 8px;
+      .time-slot.booked {
+        background-color: var(--gray-light);
+        color: var(--gray-dark);
+        border-left-color: var(--gray);
         position: relative;
-        overflow: hidden;
       }
 
-      .btn::before {
-        content: '';
+      .time-slot.booked::after {
+        content: 'Reservado';
         position: absolute;
-        top: 0;
-        left: -100%;
-        width: 100%;
-        height: 100%;
-        background: linear-gradient(90deg, transparent, rgba(255,255,255,0.2), transparent);
-        transition: 0.5s;
+        top: 5px;
+        right: 5px;
+        background-color: var(--gray-dark);
+        color: var(--white);
+        font-size: 10px;
+        padding: 2px 5px;
+        border-radius: 3px;
       }
 
-      .btn:hover::before {
-        left: 100%;
+      .time-slot.available {
+        cursor: pointer;
       }
 
-      .btn-primary {
+      .time-slot.available:hover {
         background-color: var(--primary);
         color: var(--white);
       }
 
-      .btn-primary:hover {
-        background-color: var(--primary-dark);
-        transform: translateY(-3px) scale(1.05);
-        box-shadow: 0 8px 25px rgba(0, 180, 216, 0.4);
+      .time-range {
+        font-weight: 600;
+        margin-bottom: 5px;
+      }
+
+      .slot-status {
+        font-size: 12px;
+        text-transform: uppercase;
+        letter-spacing: 1px;
+      }
+
+      .slot-status.available {
+        color: var(--primary-dark);
+      }
+
+      .slot-status.booked {
+        color: var(--gray-dark);
+      }
+
+      /* Location Section */
+      .location-section {
+        margin-bottom: 60px;
+      }
+
+      .location-card {
+        background-color: var(--white);
+        border-radius: 15px;
+        box-shadow: 0 5px 30px rgba(0, 0, 0, 0.1);
+        overflow: hidden;
+        display: flex;
+      }
+
+      .location-map {
+        flex: 1;
+        min-height: 300px;
+      }
+
+      .location-map iframe {
+        width: 100%;
+        height: 100%;
+        border: none;
+      }
+
+      .location-info {
+        width: 350px;
+        padding: 30px;
+        background-color: var(--primary-light);
+      }
+
+      .location-info h3 {
+        font-size: 22px;
+        color: var(--primary-darkest);
+        margin-bottom: 20px;
+      }
+
+      .location-details {
+        display: flex;
+        flex-direction: column;
+        gap: 15px;
+      }
+
+      .location-detail {
+        display: flex;
+        align-items: flex-start;
+        gap: 10px;
+      }
+
+      .location-detail i {
+        color: var(--primary);
+        margin-top: 3px;
+      }
+
+      .location-text {
+        flex: 1;
+      }
+
+      .location-text h4 {
+        font-size: 16px;
+        color: var(--primary-dark);
+        margin-bottom: 5px;
+      }
+
+      .location-text p {
+        color: var(--gray-dark);
+        font-size: 14px;
       }
 
       /* Footer */
@@ -711,8 +852,21 @@
       }
 
       @media (max-width: 992px) {
-        .specialty-grid {
-          grid-template-columns: 1fr;
+        .doctor-profile {
+          flex-direction: column;
+        }
+        
+        .doctor-image {
+          width: 100%;
+          height: 300px;
+        }
+        
+        .location-card {
+          flex-direction: column;
+        }
+        
+        .location-info {
+          width: 100%;
         }
         
         .navbar {
@@ -738,23 +892,19 @@
       }
 
       @media (max-width: 768px) {
-        .section-header {
-          padding-top: 80px;
+        .schedule-tabs {
+          flex-wrap: wrap;
         }
-
+        
+        .schedule-tab {
+          flex: 1;
+          text-align: center;
+          padding: 12px;
+          font-size: 14px;
+        }
+        
         .section-header h2 {
           font-size: 32px;
-        }
-
-        .specialty-header {
-          flex-direction: column;
-          text-align: center;
-          padding: 20px;
-        }
-
-        .specialty-icon {
-          margin-right: 0;
-          margin-bottom: 15px;
         }
         
         .footer-content {
@@ -764,12 +914,16 @@
       }
 
       @media (max-width: 576px) {
+        .doctor-actions {
+          flex-direction: column;
+        }
+        
         .section-header h2 {
           font-size: 28px;
         }
-
-        .specialty-card {
-          border-left: 3px solid var(--primary);
+        
+        .time-slots {
+          grid-template-columns: 1fr;
         }
         
         .footer-bottom-content {
@@ -835,259 +989,201 @@
       </div>
     </header>
 
-    <!-- Specialties Page Content -->
-    <section class="specialties-page">
+    <!-- Schedule Page Content -->
+    <main class="schedule-page">
       <div class="container">
-        <div class="section-header">
-          <span class="section-subtitle">Expertos en</span>
-          <h2>
-            Nuestras
-            <span style="color: var(--primary)">Especialidades Médicas</span>
-          </h2>
-          <div class="section-divider">
-            <span></span>
-            <i class="fas fa-heartbeat"></i>
-            <span></span>
+        <!-- Doctor Profile -->
+        <section class="doctor-profile">
+          <div class="doctor-image">
+            <img src="https://cemdoe.com/wp-content/uploads/2024/11/Raul-Ubina.jpg" alt="Dr. Roberto Sánchez">
           </div>
-        </div>
-
-        <div class="specialty-grid">
-          <!-- Urología -->
-          <div class="specialty-card">
-            <div class="specialty-header">
-              <div class="specialty-icon">
-                <i class="fas fa-procedures"></i>
-              </div>
-              <h3 class="specialty-title">Urología</h3>
+          <div class="doctor-details">
+            <h1 class="doctor-name">Dr. Roberto Sánchez</h1>
+            <p class="doctor-specialty">Oftalmología</p>
+            <p class="doctor-bio">
+              Especialista en Oftalmología con más de 12 años de experiencia en diagnóstico y tratamiento de enfermedades oculares. Miembro de la Sociedad Dominicana de Oftalmología, con especialización en técnicas modernas de microcirugía ocular y atención pediátrica.
+            </p>
+            <ul class="doctor-subspecialties">
+              <li>Cirugía Refractiva</li>
+              <li>Retina y Vítreo</li>
+              <li>Córnea</li>
+              <li>Oftalmología Pediátrica</li>
+              <li>Glaucoma</li>
+            </ul>
+            <div class="doctor-actions">
+              <a href="#agendar-cita" class="btn btn-primary">
+                <span>Agendar Cita</span>
+                <i class="fas fa-calendar-check"></i>
+              </a>
+              <a href="#ubicacion" class="btn btn-outline">
+                <span>Ver Ubicación</span>
+                <i class="fas fa-map-marker-alt"></i>
+              </a>
             </div>
-            <div class="specialty-content">
-              <p class="specialty-description">
-                Diagnóstico y tratamiento de enfermedades del tracto urinario y
-                sistema reproductor masculino. Nuestros urólogos ofrecen
-                atención integral con tecnología de vanguardia.
-              </p>
+          </div>
+        </section>
 
-              <div class="specialty-features">
-                <h4>
-                  <i class="fas fa-stethoscope"></i>
-                  Tratamientos
-                </h4>
-                <ul class="feature-list">
-                  <li>Cálculos renales y ureterales</li>
-                  <li>Hiperplasia prostática benigna</li>
-                  <li>Cáncer de próstata</li>
-                  <li>Infecciones urinarias recurrentes</li>
-                  <li>Disfunción eréctil</li>
-                  <li>Cirugía robótica y laparoscópica</li>
-                </ul>
-              </div>
-
-              <div class="specialty-cta">
-                <a href="#" class="btn btn-primary">
-                  <span>Agendar Cita</span>
-                  <i class="fas fa-calendar-check"></i>
-                </a>
-              </div>
+        <!-- Schedule Section -->
+        <section class="schedule-section">
+          <div class="section-header">
+            <span class="section-subtitle">Disponibilidad</span>
+            <h2>Horario de <span style="color: var(--primary)">Atención</span></h2>
+            <div class="section-divider">
+              <span></span>
+              <i class="fas fa-clock"></i>
+              <span></span>
             </div>
           </div>
 
-          <!-- Ginecología -->
-          <div class="specialty-card">
-            <div class="specialty-header">
-              <div class="specialty-icon">
-                <i class="fas fa-female"></i>
-              </div>
-              <h3 class="specialty-title">Ginecología</h3>
+          <div class="schedule-container">
+            <div class="schedule-tabs">
+              <div class="schedule-tab active" data-day="lunes">Lunes</div>
+              <div class="schedule-tab" data-day="martes">Martes</div>
+              <div class="schedule-tab" data-day="miercoles">Miércoles</div>
+              <div class="schedule-tab" data-day="jueves">Jueves</div>
+              <div class="schedule-tab" data-day="viernes">Viernes</div>
             </div>
-            <div class="specialty-content">
-              <p class="specialty-description">
-                Cuidado integral de la salud femenina en todas las etapas de la
-                vida. Prevención, diagnóstico y tratamiento de condiciones
-                ginecológicas con enfoque humanizado.
-              </p>
 
-              <div class="specialty-features">
-                <h4>
-                  <i class="fas fa-stethoscope"></i>
-                  Servicios
-                </h4>
-                <ul class="feature-list">
-                  <li>Control ginecológico anual</li>
-                  <li>Planificación familiar</li>
-                  <li>Menopausia y climaterio</li>
-                  <li>Ecografías ginecológicas</li>
-                  <li>Tratamiento de endometriosis</li>
-                  <li>Cirugía ginecológica mínimamente invasiva</li>
-                </ul>
+            <div class="schedule-content">
+              <!-- Lunes -->
+              <div class="schedule-day active" id="lunes">
+                <h3><i class="fas fa-calendar-day"></i> Lunes</h3>
+                <div class="time-slots">
+                  <div class="time-slot available">
+                    <div class="time-range">8:00 AM - 9:00 AM</div>
+                    <div class="slot-status available">Disponible</div>
+                  </div>
+                  <div class="time-slot booked">
+                    <div class="time-range">9:00 AM - 10:00 AM</div>
+                    <div class="slot-status booked">Reservado</div>
+                  </div>
+                  <div class="time-slot available">
+                    <div class="time-range">10:00 AM - 12:00 PM</div>
+                    <div class="slot-status available">Disponible</div>
+                  </div>
+                </div>
               </div>
 
-              <div class="specialty-cta">
-                <a href="#" class="btn btn-primary">
-                  <span>Agendar Cita</span>
-                  <i class="fas fa-calendar-check"></i>
-                </a>
-              </div>
-            </div>
-          </div>
-
-          <!-- Oftalmología -->
-          <div class="specialty-card">
-            <div class="specialty-header">
-              <div class="specialty-icon">
-                <i class="fas fa-eye"></i>
-              </div>
-              <h3 class="specialty-title">Oftalmología</h3>
-            </div>
-            <div class="specialty-content">
-              <p class="specialty-description">
-                Cuidado especializado de la visión con equipos de última
-                generación. Desde exámenes de rutina hasta cirugías complejas,
-                protegiendo uno de tus sentidos más valiosos.
-              </p>
-
-              <div class="specialty-features">
-                <h4>
-                  <i class="fas fa-stethoscope"></i>
-                  Áreas de atención
-                </h4>
-                <ul class="feature-list">
-                  <li>Cirugía de cataratas</li>
-                  <li>Corrección de miopía, astigmatismo e hipermetropía</li>
-                  <li>Glaucoma</li>
-                  <li>Retinopatía diabética</li>
-                  <li>Oftalmología pediátrica</li>
-                  <li>Tratamiento de ojo seco</li>
-                </ul>
+              <!-- Martes -->
+              <div class="schedule-day" id="martes">
+                <h3><i class="fas fa-calendar-day"></i> Martes</h3>
+                <div class="time-slots">
+                  <div class="time-slot booked">
+                    <div class="time-range">8:00 AM - 10:00 AM</div>
+                    <div class="slot-status booked">Reservado</div>
+                  </div>
+                  <div class="time-slot available">
+                    <div class="time-range">10:00 AM - 12:00 PM</div>
+                    <div class="slot-status available">Disponible</div>
+                  </div>
+                  <div class="time-slot available">
+                    <div class="time-range">2:00 PM - 4:00 PM</div>
+                    <div class="slot-status available">Disponible</div>
+                  </div>
+                </div>
               </div>
 
-              <div class="specialty-cta">
-                <a href="#" class="btn btn-primary">
-                  <span>Agendar Cita</span>
-                  <i class="fas fa-calendar-check"></i>
-                </a>
-              </div>
-            </div>
-          </div>
-
-          <!-- Pediatría -->
-          <div class="specialty-card">
-            <div class="specialty-header">
-              <div class="specialty-icon">
-                <i class="fas fa-baby"></i>
-              </div>
-              <h3 class="specialty-title">Pediatría</h3>
-            </div>
-            <div class="specialty-content">
-              <p class="specialty-description">
-                Atención médica especializada para niños y adolescentes.
-                Seguimiento del crecimiento y desarrollo, prevención de
-                enfermedades y manejo de condiciones pediátricas.
-              </p>
-
-              <div class="specialty-features">
-                <h4>
-                  <i class="fas fa-stethoscope"></i>
-                  Cuidados
-                </h4>
-                <ul class="feature-list">
-                  <li>Control del niño sano</li>
-                  <li>Vacunación</li>
-                  <li>Nutrición pediátrica</li>
-                  <li>Enfermedades infecciosas</li>
-                  <li>Alergias infantiles</li>
-                  <li>Desarrollo neurológico</li>
-                </ul>
+              <!-- Miércoles -->
+              <div class="schedule-day" id="miercoles">
+                <h3><i class="fas fa-calendar-day"></i> Miércoles</h3>
+                <div class="time-slots">
+                  <div class="time-slot available">
+                    <div class="time-range">8:00 AM - 12:00 PM</div>
+                    <div class="slot-status available">Disponible</div>
+                  </div>
+                  <div class="time-slot available">
+                    <div class="time-range">2:00 PM - 5:00 PM</div>
+                    <div class="slot-status available">Disponible</div>
+                  </div>
+                </div>
               </div>
 
-              <div class="specialty-cta">
-                <a href="#" class="btn btn-primary">
-                  <span>Agendar Cita</span>
-                  <i class="fas fa-calendar-check"></i>
-                </a>
+              <!-- Jueves -->
+              <div class="schedule-day" id="jueves">
+                <h3><i class="fas fa-calendar-day"></i> Jueves</h3>
+                <div class="time-slots">
+                  <div class="time-slot booked">
+                    <div class="time-range">8:00 AM - 10:00 AM</div>
+                    <div class="slot-status booked">Reservado</div>
+                  </div>
+                  <div class="time-slot available">
+                    <div class="time-range">10:00 AM - 12:00 PM</div>
+                    <div class="slot-status available">Disponible</div>
+                  </div>
+                </div>
+              </div>
+
+              <!-- Viernes -->
+              <div class="schedule-day" id="viernes">
+                <h3><i class="fas fa-calendar-day"></i> Viernes</h3>
+                <div class="time-slots">
+                  <div class="time-slot available">
+                    <div class="time-range">8:00 AM - 12:00 PM</div>
+                    <div class="slot-status available">Disponible</div>
+                  </div>
+                  <div class="time-slot available">
+                    <div class="time-range">2:00 PM - 4:00 PM</div>
+                    <div class="slot-status available">Disponible</div>
+                  </div>
+                </div>
               </div>
             </div>
           </div>
+        </section>
 
-          <!-- Otorrinolaringología -->
-          <div class="specialty-card">
-            <div class="specialty-header">
-              <div class="specialty-icon">
-                <i class="fas fa-ear-listen"></i>
-              </div>
-              <h3 class="specialty-title">Otorrinolaringología</h3>
-            </div>
-            <div class="specialty-content">
-              <p class="specialty-description">
-                Diagnóstico y tratamiento de enfermedades del oído, nariz y
-                garganta. Soluciones integrales para mejorar tu respiración,
-                audición y calidad de vida.
-              </p>
-
-              <div class="specialty-features">
-                <h4>
-                  <i class="fas fa-stethoscope"></i>
-                  Tratamientos
-                </h4>
-                <ul class="feature-list">
-                  <li>Pérdida auditiva</li>
-                  <li>Rinitis y sinusitis</li>
-                  <li>Amigdalitis y adenoides</li>
-                  <li>Vértigo y mareos</li>
-                  <li>Apnea del sueño</li>
-                  <li>Cirugía endoscópica nasal</li>
-                </ul>
-              </div>
-
-              <div class="specialty-cta">
-                <a href="#" class="btn btn-primary">
-                  <span>Agendar Cita</span>
-                  <i class="fas fa-calendar-check"></i>
-                </a>
-              </div>
+        <!-- Location Section -->
+        <section class="location-section" id="ubicacion">
+          <div class="section-header">
+            <span class="section-subtitle">Dónde nos encontramos</span>
+            <h2>Ubicación del <span style="color: var(--primary)">Consultorio</span></h2>
+            <div class="section-divider">
+              <span></span>
+              <i class="fas fa-map-marker-alt"></i>
+              <span></span>
             </div>
           </div>
 
-          <!-- Anestesiología -->
-          <div class="specialty-card">
-            <div class="specialty-header">
-              <div class="specialty-icon">
-                <i class="fas fa-syringe"></i>
-              </div>
-              <h3 class="specialty-title">Anestesiología</h3>
+          <div class="location-card">
+            <div class="location-map">
+              <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3784.044888188209!2d-70.64412892401406!3d18.47283798255822!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x8eb0296f3b299165%3A0x9c7b3b5b5b5b5b5b!2sCl%C3%ADnica%20San%20Antonio%20de%20Padua!5e0!3m2!1ses!2sdo!4v1620000000000!5m2!1ses!2sdo" allowfullscreen="" loading="lazy"></iframe>
             </div>
-            <div class="specialty-content">
-              <p class="specialty-description">
-                Manejo seguro del dolor durante procedimientos quirúrgicos.
-                Nuestros especialistas garantizan tu bienestar antes, durante y
-                después de cualquier intervención.
-              </p>
-
-              <div class="specialty-features">
-                <h4>
-                  <i class="fas fa-stethoscope"></i>
-                  Servicios
-                </h4>
-                <ul class="feature-list">
-                  <li>Anestesia general</li>
-                  <li>Anestesia regional</li>
-                  <li>Sedación consciente</li>
-                  <li>Manejo del dolor postoperatorio</li>
-                  <li>Anestesia para procedimientos especiales</li>
-                  <li>Monitoreo intraoperatorio avanzado</li>
-                </ul>
-              </div>
-
-              <div class="specialty-cta">
-                <a href="#" class="btn btn-primary">
-                  <span>Agendar Cita</span>
-                  <i class="fas fa-calendar-check"></i>
-                </a>
+            <div class="location-info">
+              <h3>Consultorio Principal</h3>
+              <div class="location-details">
+                <div class="location-detail">
+                  <i class="fas fa-map-marker-alt"></i>
+                  <div class="location-text">
+                    <h4>Dirección</h4>
+                    <p>Av. Principal #123, Bonao, República Dominicana</p>
+                  </div>
+                </div>
+                <div class="location-detail">
+                  <i class="fas fa-clock"></i>
+                  <div class="location-text">
+                    <h4>Horario de Atención</h4>
+                    <p>Lunes a Viernes: 8:00 AM - 5:00 PM<br>Sábados: 9:00 AM - 1:00 PM</p>
+                  </div>
+                </div>
+                <div class="location-detail">
+                  <i class="fas fa-phone-alt"></i>
+                  <div class="location-text">
+                    <h4>Teléfono</h4>
+                    <p>+1 809-525-9446</p>
+                  </div>
+                </div>
+                <div class="location-detail">
+                  <i class="fas fa-envelope"></i>
+                  <div class="location-text">
+                    <h4>Email</h4>
+                    <p>consultorio@drcarlosmendez.com</p>
+                  </div>
+                </div>
               </div>
             </div>
           </div>
-        </div>
+        </section>
       </div>
-    </section>
+    </main>
 
     <footer class="footer">
       <div class="footer-top">
@@ -1214,21 +1310,37 @@
         header.classList.toggle("scrolled", window.scrollY > 50);
       });
       
-      // Animación de los elementos al hacer scroll
-      document.addEventListener('DOMContentLoaded', function() {
-        const specialtyCards = document.querySelectorAll('.specialty-card');
-        
-        const observer = new IntersectionObserver((entries) => {
-          entries.forEach(entry => {
-            if (entry.isIntersecting) {
-              entry.target.style.opacity = 1;
-              entry.target.style.transform = 'translateY(0)';
-            }
-          });
-        }, { threshold: 0.1 });
-        
-        specialtyCards.forEach(card => {
-          observer.observe(card);
+      // Cambio de pestañas de horario
+      const scheduleTabs = document.querySelectorAll('.schedule-tab');
+      const scheduleDays = document.querySelectorAll('.schedule-day');
+      
+      scheduleTabs.forEach(tab => {
+        tab.addEventListener('click', () => {
+          // Remover clase active de todas las pestañas
+          scheduleTabs.forEach(t => t.classList.remove('active'));
+          // Añadir clase active a la pestaña clickeada
+          tab.classList.add('active');
+          
+          // Ocultar todos los días
+          scheduleDays.forEach(day => day.classList.remove('active'));
+          // Mostrar el día correspondiente
+          const dayId = tab.getAttribute('data-day');
+          document.getElementById(dayId).classList.add('active');
+        });
+      });
+      
+      // Selección de horario disponible
+      const availableSlots = document.querySelectorAll('.time-slot.available');
+      availableSlots.forEach(slot => {
+        slot.addEventListener('click', () => {
+          // Remover selección previa
+          availableSlots.forEach(s => s.classList.remove('selected'));
+          // Marcar como seleccionado
+          slot.classList.add('selected');
+          
+          // Aquí podrías abrir un modal para confirmar la cita
+          alert(`Has seleccionado el horario: ${slot.querySelector('.time-range').textContent}\n\nSerás redirigido al formulario de agendamiento.`);
+          window.location.href = "#agendar-cita";
         });
       });
       
@@ -1239,17 +1351,6 @@
       menuToggle.addEventListener('click', () => {
         menuToggle.classList.toggle('active');
         navMenu.classList.toggle('active');
-      });
-      
-      // Efecto hover mejorado para botones
-      const buttons = document.querySelectorAll('.btn');
-      buttons.forEach(button => {
-        button.addEventListener('mouseenter', () => {
-          button.style.transform = 'translateY(-3px)';
-        });
-        button.addEventListener('mouseleave', () => {
-          button.style.transform = 'translateY(0)';
-        });
       });
     </script>
   </body>

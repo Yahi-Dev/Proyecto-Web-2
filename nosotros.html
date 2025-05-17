@@ -3,7 +3,7 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>CEMSAP - Centro Médico Especializado</title>
+    <title>Sobre Nosotros - CEMSAP</title>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" />
     <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet" />
     <style>
@@ -256,11 +256,60 @@
         box-shadow: 0 8px 20px rgba(0, 180, 216, 0.4);
       }
 
+      /* About Page Styles */
+      .about-page {
+        padding: 100px 0;
+        overflow: hidden;
+      }
+
+      /* Hero Section */
+      .about-hero {
+        background: linear-gradient(135deg, var(--primary-light) 0%, var(--primary-light-2) 100%);
+        padding: 80px 0;
+        border-radius: 15px;
+        margin-bottom: 60px;
+        position: relative;
+        overflow: hidden;
+      }
+
+      .about-hero::before {
+        content: '';
+        position: absolute;
+        top: -50%;
+        right: -50%;
+        width: 100%;
+        height: 200%;
+        background: radial-gradient(circle, rgba(255,255,255,0.2) 0%, rgba(255,255,255,0) 70%);
+        transform: rotate(30deg);
+      }
+
+      .about-hero-content {
+        position: relative;
+        z-index: 1;
+        text-align: center;
+        max-width: 800px;
+        margin: 0 auto;
+      }
+
+      .about-hero h1 {
+        font-size: 42px;
+        color: var(--primary-darkest);
+        margin-bottom: 20px;
+        animation: fadeIn 0.8s ease-out;
+      }
+
+      .about-hero p {
+        font-size: 18px;
+        line-height: 1.6;
+        color: var(--black);
+        margin-bottom: 30px;
+      }
+
       /* Section Header */
       .section-header {
         text-align: center;
         margin-bottom: 60px;
-        padding-top: 100px;
+        padding-top: 20px;
         animation: fadeIn 0.8s ease-out;
       }
 
@@ -330,211 +379,365 @@
         animation: float 3s ease-in-out infinite;
       }
 
-      /* Specialties Page Styles */
-      .specialties-page {
-        padding: 100px 0;
-        overflow: hidden;
+      /* About Content */
+      .about-content {
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        gap: 40px;
+        margin-bottom: 60px;
       }
 
-      .specialty-grid {
+      .about-text {
+        animation: fadeIn 0.8s ease-out 0.2s forwards;
+        opacity: 0;
+      }
+
+      .about-text p {
+        margin-bottom: 20px;
+        line-height: 1.8;
+        font-size: 16px;
+      }
+
+      .about-image {
+        position: relative;
+        border-radius: 15px;
+        overflow: hidden;
+        box-shadow: 0 20px 40px rgba(0, 0, 0, 0.1);
+        animation: fadeIn 0.8s ease-out 0.4s forwards;
+        opacity: 0;
+        height: 400px;
+      }
+
+      .about-image img {
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+        transition: transform 0.5s ease;
+      }
+
+      .about-image:hover img {
+        transform: scale(1.05);
+      }
+
+      /* Values Section */
+      .values-section {
+        padding: 60px 0;
+        border-radius: 15px;
+        margin-bottom: 60px;
+      }
+
+      .values-grid {
         display: grid;
-        grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+        grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
         gap: 30px;
       }
 
-      .specialty-card {
+      .value-card {
         background-color: var(--white);
         border-radius: 10px;
-        box-shadow: 0 5px 20px rgba(0, 0, 0, 0.05);
-        overflow: hidden;
-        transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.1);
-        border-left: 5px solid var(--primary);
+        padding: 30px;
+        text-align: center;
+        box-shadow: 0 5px 15px rgba(0, 0, 0, 0.05);
+        transition: all 0.4s ease;
         opacity: 0;
         transform: translateY(30px);
         animation: fadeIn 0.6s forwards;
       }
 
-      .specialty-card:nth-child(1) { animation-delay: 0.1s; }
-      .specialty-card:nth-child(2) { animation-delay: 0.2s; }
-      .specialty-card:nth-child(3) { animation-delay: 0.3s; }
-      .specialty-card:nth-child(4) { animation-delay: 0.4s; }
-      .specialty-card:nth-child(5) { animation-delay: 0.5s; }
-      .specialty-card:nth-child(6) { animation-delay: 0.6s; }
+      .value-card:nth-child(1) { animation-delay: 0.1s; }
+      .value-card:nth-child(2) { animation-delay: 0.2s; }
+      .value-card:nth-child(3) { animation-delay: 0.3s; }
+      .value-card:nth-child(4) { animation-delay: 0.4s; }
+      .value-card:nth-child(5) { animation-delay: 0.5s; }
 
-      .specialty-card:hover {
-        transform: translateY(-10px) scale(1.02);
-        box-shadow: 0 15px 30px rgba(0, 180, 216, 0.3);
+      .value-card:hover {
+        transform: translateY(-10px);
+        box-shadow: 0 15px 30px rgba(0, 180, 216, 0.2);
       }
 
-      .specialty-header {
-        display: flex;
-        align-items: center;
-        padding: 25px;
-        background-color: var(--primary-light);
-        border-bottom: 1px solid var(--gray);
-        transition: all 0.3s ease;
-      }
-
-      .specialty-card:hover .specialty-header {
-        background-color: var(--primary-light-2);
-      }
-
-      .specialty-icon {
-        width: 60px;
-        height: 60px;
+      .value-icon {
+        width: 70px;
+        height: 70px;
         background-color: var(--primary);
         color: var(--white);
         border-radius: 50%;
         display: flex;
         justify-content: center;
         align-items: center;
-        font-size: 24px;
-        margin-right: 20px;
-        flex-shrink: 0;
+        font-size: 28px;
+        margin: 0 auto 20px;
         transition: all 0.3s ease;
       }
 
-      .specialty-card:hover .specialty-icon {
-        transform: rotate(15deg);
+      .value-card:hover .value-icon {
         background-color: var(--primary-dark);
+        transform: rotate(15deg);
       }
 
-      .specialty-title {
-        font-size: 22px;
-        font-weight: 700;
+      .value-title {
+        font-size: 20px;
         color: var(--primary-darkest);
-        transition: all 0.3s ease;
-      }
-
-      .specialty-card:hover .specialty-title {
-        color: var(--primary-dark);
-      }
-
-      .specialty-content {
-        padding: 25px;
-      }
-
-      .specialty-description {
-        color: var(--gray-dark);
-        margin-bottom: 20px;
-        line-height: 1.6;
-        transition: all 0.3s ease;
-      }
-
-      .specialty-card:hover .specialty-description {
-        color: var(--black);
-      }
-
-      .specialty-features {
-        margin-bottom: 25px;
-      }
-
-      .specialty-features h4 {
-        font-size: 16px;
-        color: var(--primary-dark);
         margin-bottom: 15px;
+        font-weight: 700;
+      }
+
+      .value-description {
+        color: var(--gray-dark);
+        font-size: 14px;
+        line-height: 1.6;
+      }
+
+      /* Mission Vision Section */
+      .mission-vision {
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        gap: 40px;
+        margin-bottom: 60px;
+      }
+
+      .mission-card, .vision-card {
+        background-color: var(--white);
+        border-radius: 15px;
+        padding: 40px;
+        box-shadow: 0 5px 20px rgba(0, 0, 0, 0.05);
+        position: relative;
+        overflow: hidden;
+        transition: all 0.4s ease;
+      }
+
+      .mission-card {
+        border-top: 5px solid var(--primary);
+        animation: fadeIn 0.8s ease-out 0.6s forwards;
+        opacity: 0;
+      }
+
+      .vision-card {
+        border-top: 5px solid var(--primary-dark);
+        animation: fadeIn 0.8s ease-out 0.8s forwards;
+        opacity: 0;
+      }
+
+      .mission-card:hover, .vision-card:hover {
+        transform: translateY(-10px);
+        box-shadow: 0 15px 30px rgba(0, 180, 216, 0.2);
+      }
+
+      .mission-card::before, .vision-card::before {
+        content: '';
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 5px;
+        background: linear-gradient(90deg, var(--primary), var(--primary-dark));
+        opacity: 0;
+        transition: opacity 0.3s ease;
+      }
+
+      .mission-card:hover::before, .vision-card:hover::before {
+        opacity: 1;
+      }
+
+      .mission-title, .vision-title {
+        font-size: 24px;
+        color: var(--primary-darkest);
+        margin-bottom: 20px;
+        font-weight: 700;
         display: flex;
         align-items: center;
-        gap: 10px;
-        transition: all 0.3s ease;
+        gap: 15px;
       }
 
-      .specialty-card:hover .specialty-features h4 {
-        color: var(--primary-darkest);
-      }
-
-      .specialty-features h4::after {
-        content: "";
-        flex: 1;
-        height: 1px;
-        background-color: var(--gray);
-        margin-left: 10px;
-        transition: all 0.3s ease;
-      }
-
-      .specialty-card:hover .specialty-features h4::after {
-        background-color: var(--primary);
-      }
-
-      .feature-list {
-        list-style: none;
-      }
-
-      .feature-list li {
-        margin-bottom: 10px;
-        padding-left: 25px;
-        position: relative;
-        font-size: 14px;
-        transition: all 0.3s ease;
-      }
-
-      .specialty-card:hover .feature-list li {
-        transform: translateX(5px);
-      }
-
-      .feature-list li::before {
-        content: "\f054";
-        font-family: "Font Awesome 6 Free";
-        font-weight: 900;
-        position: absolute;
-        left: 0;
-        top: 2px;
+      .mission-title i {
         color: var(--primary);
-        font-size: 12px;
-        transition: all 0.3s ease;
       }
 
-      .specialty-card:hover .feature-list li::before {
+      .vision-title i {
         color: var(--primary-dark);
-        transform: translateX(5px);
       }
 
-      .specialty-cta {
+      .mission-text, .vision-text {
+        color: var(--gray-dark);
+        line-height: 1.8;
+      }
+
+      /* Team Section */
+      .team-section {
+        margin-bottom: 60px;
+      }
+
+      .team-grid {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+        gap: 30px;
+      }
+
+      .team-card {
+        background-color: var(--white);
+        border-radius: 10px;
+        overflow: hidden;
+        box-shadow: 0 5px 15px rgba(0, 0, 0, 0.05);
+        transition: all 0.4s ease;
+        opacity: 0;
+        transform: translateY(30px);
+        animation: fadeIn 0.6s forwards;
+      }
+
+      .team-card:nth-child(1) { animation-delay: 0.1s; }
+      .team-card:nth-child(2) { animation-delay: 0.2s; }
+      .team-card:nth-child(3) { animation-delay: 0.3s; }
+      .team-card:nth-child(4) { animation-delay: 0.4s; }
+
+      .team-card:hover {
+        transform: translateY(-10px);
+        box-shadow: 0 15px 30px rgba(0, 180, 216, 0.2);
+      }
+
+      .team-image {
+        height: 250px;
+        overflow: hidden;
+      }
+
+      .team-image img {
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+        transition: transform 0.5s ease;
+      }
+
+      .team-card:hover .team-image img {
+        transform: scale(1.1);
+      }
+
+      .team-info {
+        padding: 25px;
+        text-align: center;
+      }
+
+      .team-name {
+        font-size: 20px;
+        color: var(--primary-darkest);
+        margin-bottom: 5px;
+        font-weight: 700;
+      }
+
+      .team-position {
+        color: var(--primary);
+        font-size: 14px;
+        margin-bottom: 15px;
+        font-weight: 600;
+      }
+
+      .team-description {
+        color: var(--gray-dark);
+        font-size: 14px;
+        line-height: 1.6;
+        margin-bottom: 15px;
+      }
+
+      .team-social {
         display: flex;
-        justify-content: flex-end;
+        justify-content: center;
+        gap: 15px;
       }
 
-      .btn {
-        display: inline-flex;
+      .team-social a {
+        width: 35px;
+        height: 35px;
+        background-color: var(--primary-light);
+        border-radius: 50%;
+        display: flex;
         align-items: center;
         justify-content: center;
-        padding: 12px 25px;
-        border-radius: 30px;
-        font-weight: 600;
-        font-size: 14px;
-        text-decoration: none;
-        cursor: pointer;
-        transition: all 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.1);
-        border: none;
-        gap: 8px;
+        color: var(--primary-dark);
+        transition: all 0.3s ease;
+      }
+
+      .team-social a:hover {
+        background-color: var(--primary);
+        color: var(--white);
+        transform: translateY(-3px);
+      }
+
+      /* CTA Section */
+      .cta-section {
+        background: linear-gradient(135deg, var(--primary-darkest) 0%, var(--primary-dark) 100%);
+        padding: 60px 0;
+        border-radius: 15px;
+        text-align: center;
+        color: var(--white);
+        margin-bottom: 60px;
         position: relative;
         overflow: hidden;
       }
 
-      .btn::before {
+      .cta-section::before {
+        content: '';
+        position: absolute;
+        top: -50%;
+        right: -50%;
+        width: 100%;
+        height: 200%;
+        background: radial-gradient(circle, rgba(255,255,255,0.1) 0%, rgba(255,255,255,0) 70%);
+        transform: rotate(30deg);
+      }
+
+      .cta-content {
+        position: relative;
+        z-index: 1;
+        max-width: 700px;
+        margin: 0 auto;
+      }
+
+      .cta-title {
+        font-size: 32px;
+        margin-bottom: 20px;
+        animation: fadeIn 0.8s ease-out;
+      }
+
+      .cta-text {
+        font-size: 16px;
+        line-height: 1.6;
+        margin-bottom: 30px;
+        opacity: 0.9;
+      }
+
+      .cta-button {
+        display: inline-flex;
+        align-items: center;
+        justify-content: center;
+        padding: 15px 35px;
+        border-radius: 30px;
+        font-weight: 600;
+        font-size: 16px;
+        text-decoration: none;
+        cursor: pointer;
+        transition: all 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.1);
+        background-color: var(--white);
+        color: var(--primary-dark);
+        box-shadow: 0 5px 20px rgba(0, 0, 0, 0.1);
+        position: relative;
+        overflow: hidden;
+      }
+
+      .cta-button::before {
         content: '';
         position: absolute;
         top: 0;
         left: -100%;
         width: 100%;
         height: 100%;
-        background: linear-gradient(90deg, transparent, rgba(255,255,255,0.2), transparent);
+        background: linear-gradient(90deg, transparent, rgba(255,255,255,0.3), transparent);
         transition: 0.5s;
       }
 
-      .btn:hover::before {
+      .cta-button:hover::before {
         left: 100%;
       }
 
-      .btn-primary {
-        background-color: var(--primary);
-        color: var(--white);
-      }
-
-      .btn-primary:hover {
-        background-color: var(--primary-dark);
-        transform: translateY(-3px) scale(1.05);
-        box-shadow: 0 8px 25px rgba(0, 180, 216, 0.4);
+      .cta-button:hover {
+        transform: translateY(-5px);
+        box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
       }
 
       /* Footer */
@@ -711,8 +914,13 @@
       }
 
       @media (max-width: 992px) {
-        .specialty-grid {
+        .about-content, .mission-vision {
           grid-template-columns: 1fr;
+        }
+        
+        .about-image {
+          height: 300px;
+          order: -1;
         }
         
         .navbar {
@@ -738,23 +946,16 @@
       }
 
       @media (max-width: 768px) {
-        .section-header {
-          padding-top: 80px;
+        .about-hero h1 {
+          font-size: 36px;
         }
-
+        
         .section-header h2 {
           font-size: 32px;
         }
-
-        .specialty-header {
-          flex-direction: column;
-          text-align: center;
-          padding: 20px;
-        }
-
-        .specialty-icon {
-          margin-right: 0;
-          margin-bottom: 15px;
+        
+        .cta-title {
+          font-size: 28px;
         }
         
         .footer-content {
@@ -764,12 +965,16 @@
       }
 
       @media (max-width: 576px) {
+        .about-hero h1 {
+          font-size: 32px;
+        }
+        
         .section-header h2 {
           font-size: 28px;
         }
-
-        .specialty-card {
-          border-left: 3px solid var(--primary);
+        
+        .mission-title, .vision-title {
+          font-size: 22px;
         }
         
         .footer-bottom-content {
@@ -835,259 +1040,126 @@
       </div>
     </header>
 
-    <!-- Specialties Page Content -->
-    <section class="specialties-page">
+    <!-- About Page Content -->
+    <main class="about-page">
+      <!-- Hero Section -->
+      <section class="about-hero">
+        <div class="container">
+          <div class="about-hero-content">
+            <h1>Nuestra Historia y Compromiso</h1>
+            <p>En CEMSAP nos dedicamos con compromiso y vocación a brindar servicios de salud de calidad a nuestra comunidad. Desde nuestros inicios, nos hemos esforzado por crecer junto a nuestros pacientes.</p>
+          </div>
+        </div>
+      </section>
+
       <div class="container">
-        <div class="section-header">
-          <span class="section-subtitle">Expertos en</span>
-          <h2>
-            Nuestras
-            <span style="color: var(--primary)">Especialidades Médicas</span>
-          </h2>
-          <div class="section-divider">
-            <span></span>
-            <i class="fas fa-heartbeat"></i>
-            <span></span>
-          </div>
-        </div>
-
-        <div class="specialty-grid">
-          <!-- Urología -->
-          <div class="specialty-card">
-            <div class="specialty-header">
-              <div class="specialty-icon">
-                <i class="fas fa-procedures"></i>
-              </div>
-              <h3 class="specialty-title">Urología</h3>
+        <!-- About Us Section -->
+        <section class="about-section">
+          <div class="about-content">
+            <div class="about-text">
+              <p>En la Clínica San Antonio de Padua, ubicada en Bonao, nos dedicamos con compromiso y vocación a brindar servicios de salud de calidad a nuestra comunidad. Desde nuestros inicios, nos hemos esforzado por crecer junto a nuestros pacientes, ofreciendo atención médica integral con un equipo humano altamente capacitado y tecnología de vanguardia.</p>
+              
+              <p>Nos enorgullece ser un centro de salud de referencia en la región, donde cada día trabajamos para mejorar la vida de quienes confían en nosotros. Valoramos la cercanía, la empatía y el respeto, y nos guiamos por principios éticos sólidos que colocan al paciente en el centro de todo lo que hacemos.</p>
+              
+              <p>En San Antonio de Padua, creemos que la salud es un derecho, por eso nos comprometemos a seguir ampliando nuestros servicios y fortaleciendo nuestras especialidades médicas para responder a las necesidades de Bonao y sus alrededores.</p>
             </div>
-            <div class="specialty-content">
-              <p class="specialty-description">
-                Diagnóstico y tratamiento de enfermedades del tracto urinario y
-                sistema reproductor masculino. Nuestros urólogos ofrecen
-                atención integral con tecnología de vanguardia.
-              </p>
+            <div class="about-image">
+              <img src="https://images.unsplash.com/photo-1579684385127-1ef15d508118?ixlib=rb-1.2.1&auto=format&fit=crop&w=1000&q=80" alt="Equipo médico de CEMSAP">
+            </div>
+          </div>
+        </section>
 
-              <div class="specialty-features">
-                <h4>
-                  <i class="fas fa-stethoscope"></i>
-                  Tratamientos
-                </h4>
-                <ul class="feature-list">
-                  <li>Cálculos renales y ureterales</li>
-                  <li>Hiperplasia prostática benigna</li>
-                  <li>Cáncer de próstata</li>
-                  <li>Infecciones urinarias recurrentes</li>
-                  <li>Disfunción eréctil</li>
-                  <li>Cirugía robótica y laparoscópica</li>
-                </ul>
-              </div>
-
-              <div class="specialty-cta">
-                <a href="#" class="btn btn-primary">
-                  <span>Agendar Cita</span>
-                  <i class="fas fa-calendar-check"></i>
-                </a>
-              </div>
+        <!-- Values Section -->
+        <section class="values-section">
+          <div class="section-header">
+            <span class="section-subtitle">Lo que nos guía</span>
+            <h2>Nuestros <span style="color: var(--primary)">Valores</span></h2>
+            <div class="section-divider">
+              <span></span>
+              <i class="fas fa-heartbeat"></i>
+              <span></span>
             </div>
           </div>
 
-          <!-- Ginecología -->
-          <div class="specialty-card">
-            <div class="specialty-header">
-              <div class="specialty-icon">
-                <i class="fas fa-female"></i>
+          <div class="values-grid">
+            <!-- Confianza -->
+            <div class="value-card">
+              <div class="value-icon">
+                <i class="fas fa-handshake"></i>
               </div>
-              <h3 class="specialty-title">Ginecología</h3>
+              <h3 class="value-title">Confianza</h3>
+              <p class="value-description">Crear un ambiente de confianza entre el personal y los pacientes, donde cada interacción se base en la transparencia y el respeto mutuo.</p>
             </div>
-            <div class="specialty-content">
-              <p class="specialty-description">
-                Cuidado integral de la salud femenina en todas las etapas de la
-                vida. Prevención, diagnóstico y tratamiento de condiciones
-                ginecológicas con enfoque humanizado.
-              </p>
 
-              <div class="specialty-features">
-                <h4>
-                  <i class="fas fa-stethoscope"></i>
-                  Servicios
-                </h4>
-                <ul class="feature-list">
-                  <li>Control ginecológico anual</li>
-                  <li>Planificación familiar</li>
-                  <li>Menopausia y climaterio</li>
-                  <li>Ecografías ginecológicas</li>
-                  <li>Tratamiento de endometriosis</li>
-                  <li>Cirugía ginecológica mínimamente invasiva</li>
-                </ul>
+            <!-- Atención -->
+            <div class="value-card">
+              <div class="value-icon">
+                <i class="fas fa-user-md"></i>
               </div>
-
-              <div class="specialty-cta">
-                <a href="#" class="btn btn-primary">
-                  <span>Agendar Cita</span>
-                  <i class="fas fa-calendar-check"></i>
-                </a>
-              </div>
+              <h3 class="value-title">Atención</h3>
+              <p class="value-description">Ofrecer una atención personalizada y de calidad a cada paciente, adaptándonos a sus necesidades específicas con profesionalismo.</p>
             </div>
-          </div>
 
-          <!-- Oftalmología -->
-          <div class="specialty-card">
-            <div class="specialty-header">
-              <div class="specialty-icon">
-                <i class="fas fa-eye"></i>
+            <!-- Cuidado -->
+            <div class="value-card">
+              <div class="value-icon">
+                <i class="fas fa-heart"></i>
               </div>
-              <h3 class="specialty-title">Oftalmología</h3>
+              <h3 class="value-title">Cuidado</h3>
+              <p class="value-description">Priorizar el bienestar y la salud de los pacientes en todo momento, con protocolos diseñados para su seguridad y comodidad.</p>
             </div>
-            <div class="specialty-content">
-              <p class="specialty-description">
-                Cuidado especializado de la visión con equipos de última
-                generación. Desde exámenes de rutina hasta cirugías complejas,
-                protegiendo uno de tus sentidos más valiosos.
-              </p>
 
-              <div class="specialty-features">
-                <h4>
-                  <i class="fas fa-stethoscope"></i>
-                  Áreas de atención
-                </h4>
-                <ul class="feature-list">
-                  <li>Cirugía de cataratas</li>
-                  <li>Corrección de miopía, astigmatismo e hipermetropía</li>
-                  <li>Glaucoma</li>
-                  <li>Retinopatía diabética</li>
-                  <li>Oftalmología pediátrica</li>
-                  <li>Tratamiento de ojo seco</li>
-                </ul>
+            <!-- Profesionalismo -->
+            <div class="value-card">
+              <div class="value-icon">
+                <i class="fas fa-award"></i>
               </div>
+              <h3 class="value-title">Profesionalismo</h3>
+              <p class="value-description">Mantener un alto nivel de competencia y ética profesional en todo el personal, con formación continua y estándares de excelencia.</p>
+            </div>
 
-              <div class="specialty-cta">
-                <a href="#" class="btn btn-primary">
-                  <span>Agendar Cita</span>
-                  <i class="fas fa-calendar-check"></i>
-                </a>
+            <!-- Calidez -->
+            <div class="value-card">
+              <div class="value-icon">
+                <i class="fas fa-smile"></i>
               </div>
+              <h3 class="value-title">Calidez</h3>
+              <p class="value-description">Ofrecer un trato cálido y amable a los pacientes y sus familias, creando un ambiente acogedor que facilite la recuperación.</p>
             </div>
           </div>
+        </section>
 
-          <!-- Pediatría -->
-          <div class="specialty-card">
-            <div class="specialty-header">
-              <div class="specialty-icon">
-                <i class="fas fa-baby"></i>
-              </div>
-              <h3 class="specialty-title">Pediatría</h3>
+        <!-- Mission & Vision Section -->
+        <section class="mission-vision-section">
+          <div class="mission-vision">
+            <!-- Mission -->
+            <div class="mission-card">
+              <h3 class="mission-title"><i class="fas fa-bullseye"></i>Misión</h3>
+              <p class="mission-text">Ofrecer atención médica de calidad, centrada en el paciente, con un enfoque cálido y profesional. Priorizar la salud y el bienestar de los pacientes mediante un equipo humano comprometido y tecnología de vanguardia, asegurando que cada persona reciba el cuidado que merece.</p>
             </div>
-            <div class="specialty-content">
-              <p class="specialty-description">
-                Atención médica especializada para niños y adolescentes.
-                Seguimiento del crecimiento y desarrollo, prevención de
-                enfermedades y manejo de condiciones pediátricas.
-              </p>
 
-              <div class="specialty-features">
-                <h4>
-                  <i class="fas fa-stethoscope"></i>
-                  Cuidados
-                </h4>
-                <ul class="feature-list">
-                  <li>Control del niño sano</li>
-                  <li>Vacunación</li>
-                  <li>Nutrición pediátrica</li>
-                  <li>Enfermedades infecciosas</li>
-                  <li>Alergias infantiles</li>
-                  <li>Desarrollo neurológico</li>
-                </ul>
-              </div>
-
-              <div class="specialty-cta">
-                <a href="#" class="btn btn-primary">
-                  <span>Agendar Cita</span>
-                  <i class="fas fa-calendar-check"></i>
-                </a>
-              </div>
+            <!-- Vision -->
+            <div class="vision-card">
+              <h3 class="vision-title"><i class="fas fa-eye"></i>Visión</h3>
+              <p class="vision-text">Ser un referente en la atención médica en la región, reconocido por su calidad, calidez y compromiso. Continuar innovando y mejorando los servicios para satisfacer las necesidades de la comunidad, expandiendo nuestro alcance y manteniendo los más altos estándares de atención médica.</p>
             </div>
           </div>
+        </section>
 
-          <!-- Otorrinolaringología -->
-          <div class="specialty-card">
-            <div class="specialty-header">
-              <div class="specialty-icon">
-                <i class="fas fa-ear-listen"></i>
-              </div>
-              <h3 class="specialty-title">Otorrinolaringología</h3>
-            </div>
-            <div class="specialty-content">
-              <p class="specialty-description">
-                Diagnóstico y tratamiento de enfermedades del oído, nariz y
-                garganta. Soluciones integrales para mejorar tu respiración,
-                audición y calidad de vida.
-              </p>
 
-              <div class="specialty-features">
-                <h4>
-                  <i class="fas fa-stethoscope"></i>
-                  Tratamientos
-                </h4>
-                <ul class="feature-list">
-                  <li>Pérdida auditiva</li>
-                  <li>Rinitis y sinusitis</li>
-                  <li>Amigdalitis y adenoides</li>
-                  <li>Vértigo y mareos</li>
-                  <li>Apnea del sueño</li>
-                  <li>Cirugía endoscópica nasal</li>
-                </ul>
-              </div>
-
-              <div class="specialty-cta">
-                <a href="#" class="btn btn-primary">
-                  <span>Agendar Cita</span>
-                  <i class="fas fa-calendar-check"></i>
-                </a>
-              </div>
-            </div>
+        <!-- CTA Section -->
+        <section class="cta-section">
+          <div class="cta-content">
+            <h2 class="cta-title">¿Listo para cuidar de tu salud?</h2>
+            <p class="cta-text">En CEMSAP estamos comprometidos con tu bienestar. Agenda una cita con nuestros especialistas y recibe la atención médica que mereces.</p>
+            <a href="#agendar-cita" class="cta-button">
+              <span>Agendar Cita Ahora</span>
+              <i class="fas fa-arrow-right"></i>
+            </a>
           </div>
-
-          <!-- Anestesiología -->
-          <div class="specialty-card">
-            <div class="specialty-header">
-              <div class="specialty-icon">
-                <i class="fas fa-syringe"></i>
-              </div>
-              <h3 class="specialty-title">Anestesiología</h3>
-            </div>
-            <div class="specialty-content">
-              <p class="specialty-description">
-                Manejo seguro del dolor durante procedimientos quirúrgicos.
-                Nuestros especialistas garantizan tu bienestar antes, durante y
-                después de cualquier intervención.
-              </p>
-
-              <div class="specialty-features">
-                <h4>
-                  <i class="fas fa-stethoscope"></i>
-                  Servicios
-                </h4>
-                <ul class="feature-list">
-                  <li>Anestesia general</li>
-                  <li>Anestesia regional</li>
-                  <li>Sedación consciente</li>
-                  <li>Manejo del dolor postoperatorio</li>
-                  <li>Anestesia para procedimientos especiales</li>
-                  <li>Monitoreo intraoperatorio avanzado</li>
-                </ul>
-              </div>
-
-              <div class="specialty-cta">
-                <a href="#" class="btn btn-primary">
-                  <span>Agendar Cita</span>
-                  <i class="fas fa-calendar-check"></i>
-                </a>
-              </div>
-            </div>
-          </div>
-        </div>
+        </section>
       </div>
-    </section>
+    </main>
 
     <footer class="footer">
       <div class="footer-top">
@@ -1216,7 +1288,7 @@
       
       // Animación de los elementos al hacer scroll
       document.addEventListener('DOMContentLoaded', function() {
-        const specialtyCards = document.querySelectorAll('.specialty-card');
+        const animatedElements = document.querySelectorAll('.value-card, .team-card');
         
         const observer = new IntersectionObserver((entries) => {
           entries.forEach(entry => {
@@ -1227,8 +1299,8 @@
           });
         }, { threshold: 0.1 });
         
-        specialtyCards.forEach(card => {
-          observer.observe(card);
+        animatedElements.forEach(element => {
+          observer.observe(element);
         });
       });
       
@@ -1242,7 +1314,7 @@
       });
       
       // Efecto hover mejorado para botones
-      const buttons = document.querySelectorAll('.btn');
+      const buttons = document.querySelectorAll('.btn, .cta-button');
       buttons.forEach(button => {
         button.addEventListener('mouseenter', () => {
           button.style.transform = 'translateY(-3px)';
