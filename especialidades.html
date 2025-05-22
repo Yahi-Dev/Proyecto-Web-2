@@ -4,9 +4,15 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>CEMSAP - Centro Médico Especializado</title>
-    <link rel="icon" type="image/png" href="/Images/equipo-medico.png">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" />
-    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet" />
+    <link rel="icon" type="image/png" href="/Images/equipo-medico.png" />
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css"
+    />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap"
+      rel="stylesheet"
+    />
     <style>
       :root {
         --primary-light: #caf0f8;
@@ -42,26 +48,50 @@
 
       /* Animaciones personalizadas */
       @keyframes fadeIn {
-        from { opacity: 0; transform: translateY(20px); }
-        to { opacity: 1; transform: translateY(0); }
+        from {
+          opacity: 0;
+          transform: translateY(20px);
+        }
+        to {
+          opacity: 1;
+          transform: translateY(0);
+        }
       }
 
       @keyframes pulse {
-        0% { transform: scale(1); }
-        50% { transform: scale(1.05); }
-        100% { transform: scale(1); }
+        0% {
+          transform: scale(1);
+        }
+        50% {
+          transform: scale(1.05);
+        }
+        100% {
+          transform: scale(1);
+        }
       }
 
       @keyframes float {
-        0% { transform: translateY(0px); }
-        50% { transform: translateY(-10px); }
-        100% { transform: translateY(0px); }
+        0% {
+          transform: translateY(0px);
+        }
+        50% {
+          transform: translateY(-10px);
+        }
+        100% {
+          transform: translateY(0px);
+        }
       }
 
       @keyframes borderGlow {
-        0% { box-shadow: 0 0 0 0 rgba(0, 180, 216, 0.4); }
-        70% { box-shadow: 0 0 0 10px rgba(0, 180, 216, 0); }
-        100% { box-shadow: 0 0 0 0 rgba(0, 180, 216, 0); }
+        0% {
+          box-shadow: 0 0 0 0 rgba(0, 180, 216, 0.4);
+        }
+        70% {
+          box-shadow: 0 0 0 10px rgba(0, 180, 216, 0);
+        }
+        100% {
+          box-shadow: 0 0 0 0 rgba(0, 180, 216, 0);
+        }
       }
 
       /* Header Styles */
@@ -214,7 +244,7 @@
       }
 
       .nav-link::after {
-        content: '';
+        content: "";
         position: absolute;
         bottom: 0;
         left: 0;
@@ -355,12 +385,24 @@
         animation: fadeIn 0.6s forwards;
       }
 
-      .specialty-card:nth-child(1) { animation-delay: 0.1s; }
-      .specialty-card:nth-child(2) { animation-delay: 0.2s; }
-      .specialty-card:nth-child(3) { animation-delay: 0.3s; }
-      .specialty-card:nth-child(4) { animation-delay: 0.4s; }
-      .specialty-card:nth-child(5) { animation-delay: 0.5s; }
-      .specialty-card:nth-child(6) { animation-delay: 0.6s; }
+      .specialty-card:nth-child(1) {
+        animation-delay: 0.1s;
+      }
+      .specialty-card:nth-child(2) {
+        animation-delay: 0.2s;
+      }
+      .specialty-card:nth-child(3) {
+        animation-delay: 0.3s;
+      }
+      .specialty-card:nth-child(4) {
+        animation-delay: 0.4s;
+      }
+      .specialty-card:nth-child(5) {
+        animation-delay: 0.5s;
+      }
+      .specialty-card:nth-child(6) {
+        animation-delay: 0.6s;
+      }
 
       .specialty-card:hover {
         transform: translateY(-10px) scale(1.02);
@@ -513,13 +555,18 @@
       }
 
       .btn::before {
-        content: '';
+        content: "";
         position: absolute;
         top: 0;
         left: -100%;
         width: 100%;
         height: 100%;
-        background: linear-gradient(90deg, transparent, rgba(255,255,255,0.2), transparent);
+        background: linear-gradient(
+          90deg,
+          transparent,
+          rgba(255, 255, 255, 0.2),
+          transparent
+        );
         transition: 0.5s;
       }
 
@@ -547,20 +594,30 @@
       }
 
       .footer::before {
-        content: '';
+        content: "";
         position: absolute;
         top: 0;
         left: 0;
         width: 100%;
         height: 5px;
-        background: linear-gradient(90deg, var(--primary), var(--primary-light));
+        background: linear-gradient(
+          90deg,
+          var(--primary),
+          var(--primary-light)
+        );
         animation: rainbow 8s linear infinite;
       }
 
       @keyframes rainbow {
-        0% { background-position: 0% 50%; }
-        50% { background-position: 100% 50%; }
-        100% { background-position: 0% 50%; }
+        0% {
+          background-position: 0% 50%;
+        }
+        50% {
+          background-position: 100% 50%;
+        }
+        100% {
+          background-position: 0% 50%;
+        }
       }
 
       .footer-top {
@@ -596,7 +653,7 @@
       .footer-social a {
         width: 40px;
         height: 40px;
-        background-color: rgba(255,255,255,0.1);
+        background-color: rgba(255, 255, 255, 0.1);
         border-radius: 50%;
         display: flex;
         align-items: center;
@@ -610,15 +667,19 @@
         transform: translateY(-5px);
       }
 
-      .footer-links h3, .footer-specialties h3, .footer-contact h3 {
+      .footer-links h3,
+      .footer-specialties h3,
+      .footer-contact h3 {
         font-size: 20px;
         margin-bottom: 25px;
         position: relative;
         padding-bottom: 10px;
       }
 
-      .footer-links h3::after, .footer-specialties h3::after, .footer-contact h3::after {
-        content: '';
+      .footer-links h3::after,
+      .footer-specialties h3::after,
+      .footer-contact h3::after {
+        content: "";
         position: absolute;
         bottom: 0;
         left: 0;
@@ -627,14 +688,16 @@
         background-color: var(--primary);
       }
 
-      .footer-links ul, .footer-specialties ul {
+      .footer-links ul,
+      .footer-specialties ul {
         list-style: none;
         display: flex;
         flex-direction: column;
         gap: 12px;
       }
 
-      .footer-links a, .footer-specialties a {
+      .footer-links a,
+      .footer-specialties a {
         color: var(--gray);
         text-decoration: none;
         transition: all 0.3s ease;
@@ -643,18 +706,21 @@
         gap: 8px;
       }
 
-      .footer-links a i, .footer-specialties a i {
+      .footer-links a i,
+      .footer-specialties a i {
         font-size: 12px;
         color: var(--primary);
         transition: all 0.3s ease;
       }
 
-      .footer-links a:hover, .footer-specialties a:hover {
+      .footer-links a:hover,
+      .footer-specialties a:hover {
         color: var(--white);
         transform: translateX(5px);
       }
 
-      .footer-links a:hover i, .footer-specialties a:hover i {
+      .footer-links a:hover i,
+      .footer-specialties a:hover i {
         color: var(--white);
       }
 
@@ -677,7 +743,7 @@
       }
 
       .footer-bottom {
-        background-color: rgba(0,0,0,0.2);
+        background-color: rgba(0, 0, 0, 0.2);
         padding: 20px 0;
       }
 
@@ -715,11 +781,11 @@
         .specialty-grid {
           grid-template-columns: 1fr;
         }
-        
+
         .navbar {
           display: none;
         }
-        
+
         .menu-toggle {
           display: flex;
           flex-direction: column;
@@ -728,7 +794,7 @@
           height: 20px;
           cursor: pointer;
         }
-        
+
         .menu-toggle span {
           display: block;
           width: 100%;
@@ -757,7 +823,7 @@
           margin-right: 0;
           margin-bottom: 15px;
         }
-        
+
         .footer-content {
           grid-template-columns: 1fr;
           gap: 30px;
@@ -772,13 +838,13 @@
         .specialty-card {
           border-left: 3px solid var(--primary);
         }
-        
+
         .footer-bottom-content {
           flex-direction: column;
           gap: 15px;
           text-align: center;
         }
-        
+
         .footer-bottom-links {
           flex-direction: column;
           gap: 10px;
@@ -799,7 +865,7 @@
             <span>Centro Médico Especializado</span>
           </div>
         </a>
-        
+
         <div class="contact-container">
           <div class="contact-item phone">
             <div class="contact-icon">
@@ -1013,15 +1079,15 @@
           <div class="specialty-card">
             <div class="specialty-header">
               <div class="specialty-icon">
-                <i class="fas fa-ear-listen"></i>
+                <i class="fas fa-bone"></i>
               </div>
-              <h3 class="specialty-title">Otorrinolaringología</h3>
+              <h3 class="specialty-title">Ortopedia</h3>
             </div>
             <div class="specialty-content">
               <p class="specialty-description">
-                Diagnóstico y tratamiento de enfermedades del oído, nariz y
-                garganta. Soluciones integrales para mejorar tu respiración,
-                audición y calidad de vida.
+                Diagnóstico y tratamiento de enfermedades y lesiones del sistema
+                musculoesquelético. Soluciones integrales para huesos,
+                articulaciones, músculos, ligamentos y tendones.
               </p>
 
               <div class="specialty-features">
@@ -1030,12 +1096,12 @@
                   Tratamientos
                 </h4>
                 <ul class="feature-list">
-                  <li>Pérdida auditiva</li>
-                  <li>Rinitis y sinusitis</li>
-                  <li>Amigdalitis y adenoides</li>
-                  <li>Vértigo y mareos</li>
-                  <li>Apnea del sueño</li>
-                  <li>Cirugía endoscópica nasal</li>
+                  <li>Fracturas y esguinces</li>
+                  <li>Artrosis y artritis</li>
+                  <li>Lesiones deportivas</li>
+                  <li>Problemas de columna</li>
+                  <li>Reemplazo articular</li>
+                  <li>Cirugía reconstructiva</li>
                 </ul>
               </div>
 
@@ -1120,7 +1186,9 @@
               <h3>Enlaces Rápidos</h3>
               <ul>
                 <li>
-                  <a href="/index.html"><i class="fas fa-chevron-right"></i> Inicio</a>
+                  <a href="/index.html"
+                    ><i class="fas fa-chevron-right"></i> Inicio</a
+                  >
                 </li>
                 <li>
                   <a href="/nosotros.html"
@@ -1133,7 +1201,9 @@
                   >
                 </li>
                 <li>
-                  <a href="#nuestros-medicos"><i class="fas fa-chevron-right"></i> Médicos</a>
+                  <a href="#nuestros-medicos"
+                    ><i class="fas fa-chevron-right"></i> Médicos</a
+                  >
                 </li>
                 <li>
                   <a href="#agendar-cita"
@@ -1141,7 +1211,9 @@
                   >
                 </li>
                 <li>
-                  <a href="/contacto.html"><i class="fas fa-chevron-right"></i> Contacto</a>
+                  <a href="/contacto.html"
+                    ><i class="fas fa-chevron-right"></i> Contacto</a
+                  >
                 </li>
               </ul>
             </div>
@@ -1149,7 +1221,9 @@
               <h3>Especialidades</h3>
               <ul>
                 <li>
-                  <a href="/especialidades.html"><i class="fas fa-chevron-right"></i> Urología</a>
+                  <a href="/especialidades.html"
+                    ><i class="fas fa-chevron-right"></i> Urología</a
+                  >
                 </li>
                 <li>
                   <a href="/especialidades.html"
@@ -1162,12 +1236,13 @@
                   >
                 </li>
                 <li>
-                  <a href="/especialidades.html"><i class="fas fa-chevron-right"></i> Pediatría</a>
+                  <a href="/especialidades.html"
+                    ><i class="fas fa-chevron-right"></i> Pediatría</a
+                  >
                 </li>
                 <li>
                   <a href="/especialidades.html"
-                    ><i class="fas fa-chevron-right"></i>
-                    Otorrinolaringología</a
+                    ><i class="fas fa-chevron-right"></i> Ortopedia</a
                   >
                 </li>
                 <li>
@@ -1214,42 +1289,45 @@
         const header = document.querySelector(".header");
         header.classList.toggle("scrolled", window.scrollY > 50);
       });
-      
+
       // Animación de los elementos al hacer scroll
-      document.addEventListener('DOMContentLoaded', function() {
-        const specialtyCards = document.querySelectorAll('.specialty-card');
-        
-        const observer = new IntersectionObserver((entries) => {
-          entries.forEach(entry => {
-            if (entry.isIntersecting) {
-              entry.target.style.opacity = 1;
-              entry.target.style.transform = 'translateY(0)';
-            }
-          });
-        }, { threshold: 0.1 });
-        
-        specialtyCards.forEach(card => {
+      document.addEventListener("DOMContentLoaded", function () {
+        const specialtyCards = document.querySelectorAll(".specialty-card");
+
+        const observer = new IntersectionObserver(
+          (entries) => {
+            entries.forEach((entry) => {
+              if (entry.isIntersecting) {
+                entry.target.style.opacity = 1;
+                entry.target.style.transform = "translateY(0)";
+              }
+            });
+          },
+          { threshold: 0.1 }
+        );
+
+        specialtyCards.forEach((card) => {
           observer.observe(card);
         });
       });
-      
+
       // Menú móvil
-      const menuToggle = document.querySelector('.menu-toggle');
-      const navMenu = document.querySelector('.nav-menu');
-      
-      menuToggle.addEventListener('click', () => {
-        menuToggle.classList.toggle('active');
-        navMenu.classList.toggle('active');
+      const menuToggle = document.querySelector(".menu-toggle");
+      const navMenu = document.querySelector(".nav-menu");
+
+      menuToggle.addEventListener("click", () => {
+        menuToggle.classList.toggle("active");
+        navMenu.classList.toggle("active");
       });
-      
+
       // Efecto hover mejorado para botones
-      const buttons = document.querySelectorAll('.btn');
-      buttons.forEach(button => {
-        button.addEventListener('mouseenter', () => {
-          button.style.transform = 'translateY(-3px)';
+      const buttons = document.querySelectorAll(".btn");
+      buttons.forEach((button) => {
+        button.addEventListener("mouseenter", () => {
+          button.style.transform = "translateY(-3px)";
         });
-        button.addEventListener('mouseleave', () => {
-          button.style.transform = 'translateY(0)';
+        button.addEventListener("mouseleave", () => {
+          button.style.transform = "translateY(0)";
         });
       });
     </script>
